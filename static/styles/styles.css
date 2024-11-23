@@ -1,0 +1,124 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px blue solid;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+h1 {
+    text-align: center;
+    margin: 40px;
+    color: #2f28ee;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+}
+
+h2 {
+    text-align: center;
+    margin: 40px;
+    color: #2f28ee;
+    font-family: 'Orbitron', sans-serif;
+    font-style: italic;
+}
+h2 {
+    text-align: center;
+    margin: 20px;
+    color: #2f28ee;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+}
+
+/*nav CSS*/
+
+nav {
+    margin: 55px;
+}
+
+nav a {
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #2f28ee;
+}
+
+
+nav a:hover {
+    color: white;
+}
+
+/*footer CSS*/
+
+footer {
+    margin-top: auto;
+    padding-bottom: 20px;
+}
+
+footer p {
+    color: #2f28ee;
+    font-style: italic;
+}
+
+/*forms CSS*/
+
+
+.form-div {
+    margin-top: 40px;
+    border: 3px solid white;
+    text-align: center;
+    width: 30%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-input {
+    display: block;
+    text-align: center;
+    padding:10px 50px;
+    margin:10px;
+    border-radius: 10px;
+}
+
+.form-input:focus {
+    border: 2px solid #2f28ee;
+    outline: none;
+}
+
+button {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #2f28ee;
+    border: 2px black solid;
+    border-radius: 20px;
+    padding: 16px 32px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+
+
+p {
+    color: white;
+}
+
