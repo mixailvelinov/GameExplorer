@@ -11,16 +11,17 @@ header {
     border: 1px blue solid;
 }
 
+
 main {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Aligns content horizontally */
+    align-items: center;     /* Aligns content vertically */
+    min-height: 100vh;
 }
-
 
 h1 {
     text-align: center;
-    margin: 40px;
+    margin: 60px;
     color: #2f28ee;
     font-family: 'Orbitron', sans-serif;
     font-size: 36px;
@@ -44,12 +45,12 @@ h2 {
 /*nav CSS*/
 
 nav {
-    margin: 55px;
+    margin: 80px;
 }
 
 nav a {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     text-decoration: none;
     font-size: 20px;
     font-family: 'Orbitron', sans-serif;
@@ -59,6 +60,21 @@ nav a {
 
 nav a:hover {
     color: white;
+}
+
+
+.menu-button {
+    background: none;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding-left: 0;
+    padding-right: 0;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #2f28ee;
 }
 
 /*footer CSS*/
@@ -75,6 +91,11 @@ footer p {
 
 /*forms CSS*/
 
+.form-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .form-div {
     margin-top: 40px;
@@ -116,9 +137,156 @@ button:hover {
     cursor: pointer;
 }
 
-
-
 p {
     color: white;
 }
+
+
+/*games templates style*/
+
+.game-name {
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+.games-list {
+    padding-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.4);
+
+
+
+}
+
+.games-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://plus.unsplash.com/premium_photo-1685148902854-9b9bb49fff08?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y3liZXJwdW5rfGVufDB8fDB8fHww');
+    background-repeat: repeat;
+    background-color: rgba(0, 0, 0, 0.9); /* Adds a semi-transparent black overlay */
+    background-blend-mode: overlay;       /* Mixes the image and the color */
+    filter: blur(5px); /* Blurs the entire background */
+    z-index: -1000;
+
+}
+
+
+.p-description {
+    width: 80%;
+}
+
+.photo-borders {
+    width: 400px;
+    height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Add transition for box-shadow */
+
+}
+
+.photo-borders:hover {
+    box-shadow: -15px -15px 30px 10px rgba(47, 40, 238, 0.2);  /* Glowing effect with #2f28ee */
+}
+
+
+.photo-borders::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    color: #2f28ee;
+}
+
+.photo-borders::-webkit-scrollbar-track {
+    background-color: black; /* Set background color of the track */
+    border-radius: 10px;
+}
+
+.photo-borders::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.photo-borders::-webkit-scrollbar-thumb:hover {
+    background-color: #2f28ee; /* Darker thumb color when hovered */
+}
+
+.game-card {
+    flex: 1 1 30%;
+    max-width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 80px;
+
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+
+.game-card img:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.all-games{
+    background-color: rgba(24, 14, 218, 0.05);
+}
+
+.all-games p {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+}
+
+.all-games p a {
+    text-decoration: none;
+    color: white;
+}
+
+.all-games p a:hover{
+    color: #2f28ee;
+}
+
+.game-list-h2 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    margin: 30px;
+    font-size: 40px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.all-games ul li {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    margin: 15px;
+}
+
+
+.all-games ul a {
+    text-decoration: none;
+    color: #2f28ee;
+}
+
+.all-games ul a:hover {
+    color: white;
+}
+
+
 

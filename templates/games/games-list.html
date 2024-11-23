@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="game-list-h2">Latest games...</h2>
+
+<main>
+    <section class="games-list">
+        {% for game in object_list %}
+        <div class="game-card">
+            <div class="photo-borders"><img src="{{ game.game_cover }}" alt=""></div>
+            <p class='game-name'>{{ game.name }}</p>
+            <p>Release date: {{ game.release_date }}</p>
+            <p>Genre: {% for genre in game.genre.all %} {{ genre.genre_name }} {% endfor %}</p>
+            <p>Platform: {% for platform in game.platform.all %} {{ platform.platform_name }} {% endfor %}</p>
+            <p>Developer: {{ game.developer }}</p>
+            <p class="p-description">Description: {{ game.description }}</p>
+        </div>
+        {% endfor %}
+    </section>
+</main>
+    <div class="all-games">
+        <p><a href="{% url 'all-games' %}">VIEW FULL LIST</a></p>
+    </div>
+
+{% endblock %}

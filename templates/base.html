@@ -20,22 +20,27 @@
     <header>
             <h1>Game Explorer</h1>
             <nav>
-                <a href="">Games</a>
-                <a href="{% url 'login' %}">Login</a>
-                <a href="{% url 'register' %}">Register</a>
-{#                if the user is logged in#}
-                <a href="">Profile</a>
-                <a href="">Your Games</a>
-                <a href="">Logout</a>
+                <a href="{% url 'games-list' %}">Games</a>
+                {% if user.is_authenticated %}
+                    <a href="">Profile</a>
+                    <a href="">Your Games</a>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button class="menu-button">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% endif %}
+
             </nav>
     </header>
 
-<main>
+
     
     {% block content %}
     {% endblock %}
 
-</main>
 
 <footer>
     <p>&copy; 2024 Game Explorer. Developed by Mihail Velinov. All rights reserved.</p>
