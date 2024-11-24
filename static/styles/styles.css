@@ -8,7 +8,7 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    border: 1px blue solid;
+    border: 1px #40b3ff solid;
 }
 
 
@@ -22,7 +22,7 @@ main {
 h1 {
     text-align: center;
     margin: 60px;
-    color: #2f28ee;
+    color: #40b3ff;
     font-family: 'Orbitron', sans-serif;
     font-size: 36px;
 }
@@ -30,14 +30,14 @@ h1 {
 h2 {
     text-align: center;
     margin: 40px;
-    color: #2f28ee;
+    color: #40b3ff;
     font-family: 'Orbitron', sans-serif;
     font-style: italic;
 }
 h2 {
     text-align: center;
     margin: 20px;
-    color: #2f28ee;
+    color: #40b3ff;
     font-family: 'Orbitron', sans-serif;
     font-size: 25px;
 }
@@ -54,7 +54,7 @@ nav a {
     text-decoration: none;
     font-size: 20px;
     font-family: 'Orbitron', sans-serif;
-    color: #2f28ee;
+    color: #40b3ff;
 }
 
 
@@ -74,7 +74,7 @@ nav a:hover {
     text-decoration: none;
     font-size: 20px;
     font-family: 'Orbitron', sans-serif;
-    color: #2f28ee;
+    color: #40b3ff;
 }
 
 /*footer CSS*/
@@ -85,7 +85,7 @@ footer {
 }
 
 footer p {
-    color: #2f28ee;
+    color: #40b3ff;
     font-style: italic;
 }
 
@@ -98,34 +98,40 @@ footer p {
 }
 
 .form-div {
+    padding-bottom:30px;
     margin-top: 40px;
     border: 3px solid white;
     text-align: center;
-    width: 30%;
-    height: 40vh;
+    width: 25%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.form-input {
+.form-input  {
     display: block;
     text-align: center;
     padding:10px 50px;
-    margin:10px;
+    margin:20px;
     border-radius: 10px;
 }
 
+.date-input {
+    padding: 10px 75px;
+}
+
+
 .form-input:focus {
-    border: 2px solid #2f28ee;
+    border: 2px solid #2F28EE;
     outline: none;
 }
 
 button {
     text-align: center;
     margin-top: 20px;
-    background-color: #2f28ee;
+    background-color: #40b3ff;
     border: 2px black solid;
     border-radius: 20px;
     padding: 16px 32px;
@@ -201,7 +207,7 @@ p {
 .photo-borders::-webkit-scrollbar {
     width: 7px;
     height: 7px;
-    color: #2f28ee;
+    color: #40b3ff;
 }
 
 .photo-borders::-webkit-scrollbar-track {
@@ -215,7 +221,7 @@ p {
 }
 
 .photo-borders::-webkit-scrollbar-thumb:hover {
-    background-color: #2f28ee; /* Darker thumb color when hovered */
+    background-color: #40b3ff; /* Darker thumb color when hovered */
 }
 
 .game-card {
@@ -257,7 +263,7 @@ p {
 }
 
 .all-games p a:hover{
-    color: #2f28ee;
+    color: #40b3ff;
 }
 
 .game-list-h2 {
@@ -281,7 +287,7 @@ ul {
 
 .all-games ul a {
     text-decoration: none;
-    color: #2f28ee;
+    color:#40b3ff;
 }
 
 .all-games ul a:hover {
@@ -290,3 +296,100 @@ ul {
 
 
 
+/*account details CSS*/
+
+.user-details-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.user-card {
+    display: flex;
+    width: 50%;
+    height: auto;
+}
+
+.user-visualization {
+    width: 30%;
+    border: #4ac1f7 2px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.user-photo {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    width: 80%;
+    height: auto;
+    overflow: hidden;
+}
+
+.user-photo img {
+    width: 100%;
+    height: auto;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.user-details h1  {
+    display: inline;
+    text-align: left;
+    margin: 30px;
+    padding-bottom: 10px;
+    font-size: 35px;
+    border-bottom: #4ac1f7 1px solid;
+}
+
+.user-details h2 {
+    text-align: left;
+    display: flex;
+    margin-top: 5px;
+    margin-left: 30px;
+}
+
+.user-details p {
+    font-size: 15px;
+    margin-left: 30px;
+    font-style: italic;
+    color: white;
+}
+
+.user-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+/*account close CSS*/
+
+.delete-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.account-close-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-close-page h1{
+    margin-bottom: 25px;
+}
+
+.account-close-page h2 {
+    padding-bottom: 20px;
+    border-bottom: #4ac1f7 1px solid;
+    text-align: center;
+    width: 25%;
+}

@@ -13,6 +13,11 @@ class GamesListView(ListView):
     def get_queryset(self):
         return Game.objects.all()[:3]
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = self.request.user
+        return context
+
 
 class AllGamesView(ListView):
     model = Game
@@ -20,3 +25,8 @@ class AllGamesView(ListView):
 
     def get_queryset(self):
         return Game.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = self.request.user
+        return context

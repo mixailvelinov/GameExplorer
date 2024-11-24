@@ -2,10 +2,10 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import View, CreateView, FormView
+from django.views.generic import View, CreateView, FormView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from accounts.forms import AccountRegisterForm, AccountLoginForm
+from accounts.forms import AccountRegisterForm, AccountLoginForm, AccountEditForm
 from accounts.models import Account, Profile
 
 
@@ -32,3 +32,45 @@ class AccountLoginView(LoginView):
 
 class AccountLogoutView(LogoutView):
     pass
+
+
+def account_details(request, id):
+    account = request.user
+
+    context = {
+        'account': account,
+    }
+
+    return render(request, 'accounts/account-details-page.html', context)
+
+
+class AccountEditView(UpdateView):
+    model = Profile
+    form_class = AccountEditForm
+    template_name = 'accounts/account-edit-page.html'
+    pk_url_kwarg = 'id'
+    success_url = reverse_lazy('account-details')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = self.request.user
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('account-details', kwargs={'id': self.object.user.id})
+
+
+def account_delete(request, id):
+    account = request.user
+    context = {'account': account}
+
+    if request.method == 'POST':
+        # Manually delete related reviews if needed
+        account.review_set.all().delete()
+        # Delete the user/account
+        account.delete()
+        return redirect('index')
+
+    return render(request, 'accounts/close-account-page.html', context)
+
+

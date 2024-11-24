@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}\
+<div class="account-close-page">
+    <h1>Are you sure you want to close the account?</h1>
+    <h2>This action is permanent.</h2>
+    <div class="delete-buttons-container">
+        <a href="{% url 'index' %}"><button>No</button></a>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <button>Yes</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}
+

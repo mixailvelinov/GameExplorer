@@ -27,7 +27,6 @@ class Profile(models.Model):
         primary_key=True,
     )
 
-    username = models.CharField(unique=True, max_length=30)
     first_name = models.CharField(max_length=30, null=True, blank=True, validators=[name_validator])
     last_name = models.CharField(max_length=30, null=True, blank=True, validators=[name_validator])
     date_of_birth = models.DateField(null=True, blank=True)

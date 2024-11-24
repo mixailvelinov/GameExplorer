@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="form-container">
+    <div class="form-div">
+        <h2>Edit Profile Details</h2>
+        <form method='POST' action="">
+            {% csrf_token %}
+            {{ form.first_name }}
+            {{ form.last_name }}
+            {{ form.profile_picture }}
+            {{ form.date_of_birth }}
+            {{ form.description }}
+            <button>Save</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
