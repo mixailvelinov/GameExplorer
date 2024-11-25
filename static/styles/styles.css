@@ -3,14 +3,32 @@ body {
     display: flex;
     flex-direction: column;
     background-color: black;
+
 }
 
 header {
+    margin: 0 auto;
+    width: 70%;
     display: flex;
-    justify-content: space-between;
-    border: 1px #40b3ff solid;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/static/logo/banner.png');
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    box-shadow: 0 0 7px #4ac1f7;
+
 }
 
+header img {
+    align-items: center;
+    transition: transform 0.5s ease;
+}
+
+header img:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
+}
 
 main {
     display: flex;
@@ -45,12 +63,15 @@ h2 {
 /*nav CSS*/
 
 nav {
-    margin: 80px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 nav a {
-    padding-left: 10px;
-    padding-right: 10px;
+    margin: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
     text-decoration: none;
     font-size: 20px;
     font-family: 'Orbitron', sans-serif;
@@ -66,6 +87,8 @@ nav a:hover {
 .menu-button {
     background: none;
     margin: 0;
+    margin-right: 40px;
+    margin-left: 40px;
     color: inherit;
     font: inherit;
     cursor: pointer;

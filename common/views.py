@@ -7,8 +7,16 @@ from accounts.models import Profile
 
 
 def index(request):
-    account = request.user
-    profile = Profile.objects.get(user=account)
+    if request.user.is_authenticated:
+        account = request.user
+        try:
+            profile = Profile.objects.get(user=account)
+        except Profile.DoesNotExist:
+            profile = None
+    else:
+        account = None
+        profile = None
+
     context = {
         'account': account,
         'profile': profile,
