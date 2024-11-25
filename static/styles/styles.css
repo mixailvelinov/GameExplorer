@@ -13,7 +13,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('/static/logo/banner.png');
+    background-image: url("/static/logo/banner.png");
     background-repeat: no-repeat;
     border-radius: 5px;
     box-shadow: 0 0 7px #4ac1f7;
@@ -337,7 +337,7 @@ ul {
 
 .user-visualization {
     width: 30%;
-    border: #4ac1f7 2px solid;
+    box-shadow: 0 0 9px #4ac1f7;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -415,4 +415,90 @@ ul {
     border-bottom: #4ac1f7 1px solid;
     text-align: center;
     width: 25%;
+}
+
+
+/*game details CSS*/
+
+.game-details-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.game-image-container {
+    width: 300px;
+    height: auto;
+}
+
+.game-image-container img {
+    display: block;
+    width: 100%;
+}
+
+.game-system-details h2 {
+    text-align: left;
+    font-size: 19px;
+}
+
+
+.game-details-card {
+    margin-top: 10px;
+    padding-left: 30px;
+    display: flex;
+    height: auto;
+    border-radius: 10px;
+    background-image: url("/static/backgrounds/background-game-card.png");
+    box-shadow: 0 0 7px #04171a;
+
+
+}
+
+
+.game-photo {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 40%;
+    height: auto;
+}
+
+.game-photo img {
+    display: block;
+    width: 300px;
+    height: auto;
+    box-shadow: 0 0 9px #4ac1f7;
+}
+
+.game-details h2 {
+    text-align: left;
+}
+
+.game-details-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-details {
+    margin-top: 40px;
+}
+
+.game-description-container {
+    padding-top: 40px;
+    width: 40%;
+    margin: 0 auto;
+    font-style: italic;
+    text-align: center;
+    font-size: 20px;
+}
+
+.mark-as-played-btn {
+    margin: 0 auto;
+}
+
+.game-h1 {
+    margin-bottom: 5px;
 }

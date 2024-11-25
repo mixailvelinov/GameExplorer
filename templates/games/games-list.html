@@ -10,7 +10,7 @@
         <section class="games-list">
             {% for game in object_list %}
             <div class="game-card">
-                <div class="photo-borders"><img src="{{ game.game_cover }}" alt=""></div>
+                <div class="photo-borders"><a href="{% url 'games-detail' slug=game.slug %}"><img src="{{ game.game_cover }}" alt=""></a></div>
                 <p class='game-name'>{{ game.name }}</p>
                 <p>Release date: {{ game.release_date }}</p>
                 <p>Genre: {% for genre in game.genre.all %} {{ genre.genre_name }} {% endfor %}</p>
