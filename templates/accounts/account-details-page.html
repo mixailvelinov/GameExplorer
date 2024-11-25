@@ -16,9 +16,9 @@
                 {% if account.profile.first_name and account.profile.first_name %}
                     <h2>{{ account.profile.first_name }} {{ account.profile.last_name }}</h2>
                 {% elif account.profile.first_name %}
-                    <h2>{{ account.profile.first_name }} {{ account.profile.last_name }}</h2>
+                    <h2>{{ account.profile.first_name }}</h2>
                 {% elif account.profile.last_name %}
-                    <h2>{{ account.profile.first_name }} {{ account.profile.last_name }}</h2>
+                    <h2>{{ account.profile.last_name }}</h2>
                 {% endif %}
             </div>
         </div>
@@ -32,7 +32,7 @@
             <h2>DATE OF BIRTH: {% if account.profile.date_of_birth %}
                 {{ account.profile.date_of_birth }} {% else %} No information provided</h2>
             {% endif %}
-            <h2>GAMES PLAYED:</h2> {#continue once the backend logic is completed#}
+            <h2>GAMES PLAYED: {% if account.review_set %} {{ account.review_set.count }} {% else %} 0 {% endif %}</h2> {#continue once the backend logic is completed#}
             <p>{% if account.profile.description %} {{ account.profile.description }} {% endif %}</p>
         </div>
     </section>

@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
 
@@ -23,3 +24,11 @@ class Game(models.Model):
         super().save(*args, **kwargs)
 
 
+class Review(models.Model):
+    game = models.ForeignKey('games.Game', on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.Account', on_delete=models.CASCADE, unique=True)
+    rating = models.PositiveIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
+    )
+    review = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <section class="game-form-container">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.rating }}
+            {{ form.review }}
+            <button>Submit</button>
+        </form>
+    </section>
+
+{% endblock %}

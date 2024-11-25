@@ -65,7 +65,6 @@ def account_delete(request, id):
     context = {'account': account}
 
     if request.method == 'POST':
-        # Manually delete related reviews if needed
         account.review_set.all().delete()
         # Delete the user/account
         account.delete()
