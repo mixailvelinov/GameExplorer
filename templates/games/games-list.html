@@ -16,7 +16,7 @@
                 <p>Genre: {% for genre in game.genre.all %} {{ genre.genre_name }} {% endfor %}</p>
                 <p>Platform: {% for platform in game.platform.all %} {{ platform.platform_name }} {% endfor %}</p>
                 <p>Developer: {{ game.developer }}</p>
-                <p class="p-description">Description: {{ game.description }}</p>
+                <p class="p-description">Description: {{ game.description|truncatewords:25 }}</p>
             </div>
             {% endfor %}
         </section>

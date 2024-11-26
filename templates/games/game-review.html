@@ -2,13 +2,18 @@
 
 {% block content %}
 
-    <section class="game-form-container">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.rating }}
-            {{ form.review }}
-            <button>Submit</button>
-        </form>
-    </section>
+<section class="game-review-container"  >
+    <h2>You are reviewing {{ game.name }}</h2>
+        <div class='game-review-form-div'>
+            <form method='POST' action="">
+                {% csrf_token %}
+                <p>Rate the game out of 5:</p>
+                {{ form.rating }}
+                <p>Share a few words about your experience:</p>
+                {{ form.review }}
+                <button>Submit</button>
+            </form>
+        </div>
 
+</section>
 {% endblock %}

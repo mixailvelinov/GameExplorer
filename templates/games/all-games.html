@@ -3,6 +3,8 @@
 {% block content %}
 
 <div class="all-games">
+
+    {% if object_list %}
     <ul>
         {% if object_list %}
         {% for game in object_list %}
@@ -12,6 +14,9 @@
         <p>No games</p>
         {% endif %}
     </ul>
+    {% else %}
+        <h2>No games added yet...</h2>
+    {% endif %}
 </div>
 
 {% endblock %}

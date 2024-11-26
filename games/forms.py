@@ -8,4 +8,8 @@ class GameReviewForm(forms.ModelForm):
         model = Review
         fields = ['rating', 'review']
 
+    widgets = {
+        'review': forms.Textarea(attrs={'placeholder': 'Write your review here...'}),
+    }
+
 

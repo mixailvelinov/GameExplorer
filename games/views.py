@@ -1,14 +1,16 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum, Avg
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 from games.forms import GameReviewForm
 from games.models import Game, Review
 
-
 # Create your views here.
+
 
 class GamesListView(ListView):
     model = Game
@@ -48,7 +50,7 @@ class GameDetailView(DetailView):
         return context
 
 
-class GameReview(CreateView):
+class GameReview(LoginRequiredMixin, CreateView):
     model = Review
     form_class = GameReviewForm
     template_name = 'games/game-review.html'
@@ -69,8 +71,19 @@ class GameReview(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account'] = self.request.user
+        context['game'] = game = Game.objects.get(slug=self.kwargs['slug'])
         return context
 
 
+class GameListAllReviews(ListView):
+    template_name = 'games/game-all-reviews.html'
 
+    def get_queryset(self):
+        game = get_object_or_404(Game, slug=self.kwargs['slug'])
+        return Review.objects.filter(game=game)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = self.request.user
+        context['game'] = game = Game.objects.get(slug=self.kwargs['slug'])
+        return context

@@ -1,7 +1,9 @@
 from django.contrib.auth import login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import View, CreateView, FormView, DetailView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -35,7 +37,7 @@ class AccountLogoutView(LogoutView):
 
 
 def account_details(request, id):
-    account = request.user
+    account = get_object_or_404(Account, id=id)
 
     context = {
         'account': account,
@@ -44,7 +46,7 @@ def account_details(request, id):
     return render(request, 'accounts/account-details-page.html', context)
 
 
-class AccountEditView(UpdateView):
+class AccountEditView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = AccountEditForm
     template_name = 'accounts/account-edit-page.html'
@@ -56,17 +58,24 @@ class AccountEditView(UpdateView):
         context['account'] = self.request.user
         return context
 
+    def get_object(self, queryset=None):
+        profile = Profile.objects.get(pk=self.kwargs['id'])
+        if profile.user != self.request.user:
+            raise PermissionDenied("You do not have permission to edit this profile.")
+        return profile
+
     def get_success_url(self):
         return reverse_lazy('account-details', kwargs={'id': self.object.user.id})
 
 
 def account_delete(request, id):
-    account = request.user
+    account = get_object_or_404(Account, id=id)
     context = {'account': account}
 
+    if account != request.user:
+        raise PermissionDenied("You do not have permission to delete this account.")
+
     if request.method == 'POST':
-        account.review_set.all().delete()
-        # Delete the user/account
         account.delete()
         return redirect('index')
 

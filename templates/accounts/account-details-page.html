@@ -36,9 +36,11 @@
             <p>{% if account.profile.description %} {{ account.profile.description }} {% endif %}</p>
         </div>
     </section>
+                {% if account.id == request.user.id %}
                 <div class="user-buttons">
                     <a href="{% url 'account-edit' account.id %}"><button>EDIT DETAILS</button></a>
                     <a href="{% url 'account-delete' account.id %}"><button>CLOSE ACCOUNT</button></a>
+               {% endif %}
 
         </div>
 </div>

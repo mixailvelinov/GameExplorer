@@ -17,8 +17,8 @@
             <h2>GENRE: {% for genre in game.genre.all %} {{ genre.genre_name }} {% endfor %}</h2>
             <h2>PLATFORMS: {% for platform in game.platform.all %} {{ platform.platform_name }} {% endfor %}</h2>
 
-            <h2>RATING: {% if total_rating %}{{ total_rating|floatformat:"2" }}{% else %}No reviews yet</h2>{% endif %}
-            <h2>REVIEWS: </h2> {#continue once the backend logic is completed#}
+            <h2>RATING: {% if total_rating %}{{ total_rating|floatformat:"2" }}/5{% else %}No reviews yet{% endif %}</h2>
+            <h2><a class='h2-button-reviews' href="{% url 'game-all-reviews' slug=game.slug %}">REVIEWS</a> </h2> {#continue once the backend logic is completed#}
 
 
         </div>

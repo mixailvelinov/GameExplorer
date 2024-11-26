@@ -26,7 +26,7 @@ class Game(models.Model):
 
 class Review(models.Model):
     game = models.ForeignKey('games.Game', on_delete=models.CASCADE)
-    user = models.ForeignKey('accounts.Account', on_delete=models.CASCADE, unique=True)
+    user = models.ForeignKey('accounts.Account', on_delete=models.CASCADE)
     rating = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)]
     )
