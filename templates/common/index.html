@@ -1,5 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h5>Misho</h5>
+    <div class="index-page">
+    <section class="introduction">
+        <h1>Welcome to Game Explorer</h1>
+        <p>Game Explorer allows you to review a library of games and share your thoughts about your experience. You can read other player's reviews to help you choose your next adventure. </p>
+        <p>Our team works hard on adding the latest games, however, if you aren't seeing something that you are interested in our library, feel free to leave a suggestion so we can check if it can be included.</p>
+        <a href="{% url 'all-games' %}"><button>View our full game library here</button></a>
+    </section>
+
+    {% if games %}
+        <div class="game-card-index">
+            <div class="latest-entry">
+                <div class="entry-badge">
+                    <img src="{% static 'badges/latest_entry.png' %}" alt="">
+                </div>
+                <div class="game-card-cover-photo">
+                    <a href="{% url 'games-detail' slug=latest_game.slug %}"><img src="{{ latest_game.game_cover }}" alt=""></a>
+                </div>
+            </div>
+                <div class="top-entry">
+                    <div class="entry-badge-top">
+                        <img src="{% static 'badges/top_rated.png' %}" alt="">
+                    </div>
+                <div class="game-card-cover-photo">
+                    <a href="{% url 'games-detail' slug=top_game.slug %}"><img src="{{ top_game.game_cover }}" alt=""></a>
+                </div>
+                </div>
+            </div>
+    {% endif %}
+    </div>
+
 {% endblock %}
