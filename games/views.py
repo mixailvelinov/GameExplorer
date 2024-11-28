@@ -64,7 +64,8 @@ class GameReview(LoginRequiredMixin, CreateView):
         game = get_object_or_404(Game, slug=self.kwargs['slug'])
 
         if Review.objects.filter(game=game, user=self.request.user).exists():
-            raise Exception('You have already reviewed this game!')
+            messages.error(self.request, 'You have already reviewed this game!')
+            return self.form_invalid(form)
 
         form.instance.game = game
         form.instance.user = self.request.user

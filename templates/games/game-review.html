@@ -9,8 +9,20 @@
                 {% csrf_token %}
                 <p>Rate the game out of 5:</p>
                 {{ form.rating }}
+                {% if form.rating.errors %}
+                    <div class="form-error">
+                        {{ form.rating.errors }}
+                    </div>
+                {% endif %}
                 <p>Share a few words about your experience:</p>
                 {{ form.review }}
+                {% if messages %}
+                    <ul class="form-error">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                 <button>Submit</button>
             </form>
         </div>

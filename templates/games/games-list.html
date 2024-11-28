@@ -6,7 +6,6 @@
 {% if object_list %}
     <h2 class="game-list-h2">Latest games...</h2>
 
-    <main>
         <section class="games-list">
             {% for game in object_list %}
             <div class="game-card">
@@ -20,10 +19,7 @@
             </div>
             {% endfor %}
         </section>
-    </main>
-        <div class="all-games">
-            <p><a href="{% url 'all-games' %}">VIEW FULL LIST</a></p>
-        </div>
+        <section class="introduction"><a href="{% url 'all-games' %}"><button>View our full game library here</button></a></section>
 {% else %}
     <h2>No games added yet...</h2>
 {% endif %}
