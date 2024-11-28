@@ -1,22 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-    <br>
+<h2>All reviews by {{ account.username }}</h2>
 <div class="reviews-container">
     {% if object_list %}
-    <h2>Player reviews for {{ game.name }}</h2>
     {% for review in object_list %}
         <div class="review-card">
             <div class="review-card-reviewer-details">
-                <div class="reviewer-photo">
-                    {% if review.user.profile.profile_picture %}
-                        <a href="{% url 'account-details' review.user.id %}"><img src="{{ review.user.profile.profile_picture }}" alt=""></a>
-                    {% else %}
-                        <a href="{% url 'account-details' review.user.id %}"><img src="{% static 'user/no-photo-user.png' %}" alt=""></a>
-                    {% endif %}
-
+                <div class="game-photo-review">
+                        <a href="{% url 'games-detail' slug=review.game.slug %}"><img src="{{ review.game.game_cover }}" alt=""></a>
                 </div>
-               <p> {{ review.user.username }}</p>
             </div>
             <div class="review-card-review-details">
                 <p>Player rating: {{ review.rating }} / 5</p>
@@ -32,7 +26,7 @@
 </div>
     <br>
     <br>
-<div class="pagination">
+    <div class="pagination">
     {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a class='page-button'href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -51,5 +45,4 @@
         {% endif %}
     {% endif %}
 </div>
-
 {% endblock %}

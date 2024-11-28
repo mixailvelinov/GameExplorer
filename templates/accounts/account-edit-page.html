@@ -5,10 +5,20 @@
 <section class="form-container">
     <div class="form-div">
         <h2>Edit Profile Details</h2>
-        <form method='POST' action="">
+        <form class="account-form-div" method='POST' action="">
             {% csrf_token %}
             {{ form.first_name }}
+            {% if form.first_name.errors %}
+                <div class="form-error">
+                    {{ form.first_name.errors }}
+                </div>
+            {% endif %}
             {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                <div class="form-error">
+                    {{ form.last_name.errors }}
+                </div>
+            {% endif %}
             {{ form.profile_picture }}
             {{ form.date_of_birth }}
             {{ form.description }}

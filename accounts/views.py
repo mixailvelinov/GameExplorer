@@ -4,11 +4,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, CreateView, FormView, DetailView, UpdateView, DeleteView
+from django.views.generic import View, CreateView, FormView, DetailView, UpdateView, DeleteView, ListView
 from django.urls import reverse_lazy
 
 from accounts.forms import AccountRegisterForm, AccountLoginForm, AccountEditForm
 from accounts.models import Account, Profile
+from games.models import Review
 
 
 # Create your views here.
@@ -82,3 +83,15 @@ def account_delete(request, id):
     return render(request, 'accounts/close-account-page.html', context)
 
 
+class AccountReviews(ListView):
+    template_name = 'accounts/account-reviews.html'
+    paginate_by = 5
+
+    def get_queryset(self):
+        review_object = Review.objects.all().filter(user_id=self.kwargs['id'])
+        return review_object
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = Account.objects.get(id=self.kwargs['id'])
+        return context

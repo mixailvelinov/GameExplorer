@@ -4,12 +4,41 @@
 <section class="form-container">
     <div class="form-div">
         <h2>Create an account</h2>
-        <form method='POST' action="">
+        <form class="account-form-div" method='POST' action="">
             {% csrf_token %}
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="form-error">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                </div>
+                    {% endfor %}
+            {% endif %}
             {{ form.email }}
+            {% if form.email.errors %}
+                <div class="form-error">
+                    {% for error in form.email.errors %}
+                        <p>{{ error }}</p>
+                </div>
+                    {% endfor %}
+            {% endif %}
             {{ form.password1 }}
-            {{ form.password2 }}
+            {% if form.password1.errors %}
+                <div class="form-error">
+                    {% for error in form.password1.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+            {% endif %}
+        {{ form.password2 }}
+            {% if form.password2.errors %}
+                <div class="form-error">
+                    {% for error in form.password2.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <button type="submit">Register</button>
+
         </form>
     </div>
 </section>

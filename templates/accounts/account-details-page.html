@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -9,11 +10,11 @@
                 {% if account.profile.profile_picture %}
                     <img src="{{ account.profile.profile_picture }}" alt="">
                 {% else %}
-                    <h2>No photo yet</h2>
+                    <img src="{% static 'user/no-photo-user.png' %}" alt="">
                 {% endif %}
             </div>
             <div class="user-name-card">
-                {% if account.profile.first_name and account.profile.first_name %}
+                {% if account.profile.first_name and account.profile.last_name %}
                     <h2>{{ account.profile.first_name }} {{ account.profile.last_name }}</h2>
                 {% elif account.profile.first_name %}
                     <h2>{{ account.profile.first_name }}</h2>
@@ -28,11 +29,14 @@
         <div class="user-details">
             <h1>INFORMATION</h1>
 
-            <h2>EMAIL: {{ account.email }}</h2>
+            <h2>USERNAME: {{ account.username }}</h2>
             <h2>DATE OF BIRTH: {% if account.profile.date_of_birth %}
                 {{ account.profile.date_of_birth }} {% else %} No information provided</h2>
             {% endif %}
             <h2>GAMES PLAYED: {% if account.review_set %} {{ account.review_set.count }} {% else %} 0 {% endif %}</h2> {#continue once the backend logic is completed#}
+            {% if account.review_set.count > 0 %}
+                <h2><a href="{% url 'account-reviews' account.id %}">ALL REVIEWS</a></h2>
+            {% endif %}
             <p>{% if account.profile.description %} {{ account.profile.description }} {% endif %}</p>
         </div>
     </section>

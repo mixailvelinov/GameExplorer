@@ -4,7 +4,7 @@
 <section class="form-container">
     <div class="form-div">
         <h2>Log into your account</h2>
-        <form method='POST' action="">
+        <form class="account-form-div" method='POST' action="">
             {% csrf_token %}
             {{ form.username }}
             {{ form.password }}

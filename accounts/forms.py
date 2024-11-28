@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.exceptions import ValidationError
 
 from accounts.models import Profile
 
@@ -10,10 +11,11 @@ UserModel = get_user_model()
 class AccountRegisterForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = UserModel
-        fields = ('email', )
+        fields = ('username', 'email', )
 
     def __init__(self, *args, **kwargs):
         super(AccountRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-input', 'placeholder': 'Create a username'})
         self.fields['email'].widget.attrs.update({'class': 'form-input', 'placeholder': 'Enter your email address'})
         self.fields['password1'].widget.attrs.update({'class': 'form-input', 'placeholder': 'Enter your password'})
         self.fields['password2'].widget.attrs.update({'class': 'form-input', 'placeholder': 'Confirm your password'})

@@ -35,6 +35,7 @@ main {
     align-items: center;     /* Aligns content vertically */
 }
 
+
 h1 {
     text-align: center;
     margin: 60px;
@@ -127,16 +128,22 @@ footer p {
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .form-input  {
     display: block;
     text-align: center;
     padding:10px 50px;
-    margin:20px;
+    margin:6px;
     border-radius: 10px;
+}
+
+.account-form-div {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .date-input {
@@ -769,4 +776,47 @@ h4 {
 
 .search-field input {
     padding: 10px;
+}
+
+.form-error{
+    background-color: #f44336;
+    text-align: center;
+    padding: 1px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+a {
+    text-decoration: none;
+    color: #4ac1f7;
+}
+
+a:hover{
+    color: white;
+}
+
+/*INDIVIDUAL USER REVIEWS CSS*/
+
+.all-reviews {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-review-card {
+    padding: 10px;
+    margin: 10px;
+}
+
+.game-photo-review {
+    width: 150px;
+    height: 150px;
+    box-shadow: 0 0 7px #4ac1f7;
+    overflow: hidden;
+}
+
+.game-photo-review img {
+    width: 100%;
+    height: auto;
 }
