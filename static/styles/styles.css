@@ -814,9 +814,15 @@ a:hover{
     height: 150px;
     box-shadow: 0 0 7px #4ac1f7;
     overflow: hidden;
+    transition: transform 0.5s ease;
+
 }
 
 .game-photo-review img {
     width: 100%;
     height: auto;
+}
+
+.game-photo-review:hover {
+    transform: scale(1.1);
 }
