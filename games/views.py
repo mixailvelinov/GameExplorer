@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Sum, Avg
+from django.db.models import Sum, Avg, Q
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
@@ -17,7 +17,7 @@ class GamesListView(ListView):
     template_name = 'games/games-list.html'
 
     def get_queryset(self):
-        return Game.objects.all()[:3]
+        return Game.objects.all().order_by('-release_date')[:3]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -28,9 +28,14 @@ class GamesListView(ListView):
 class AllGamesView(ListView):
     model = Game
     template_name = 'games/all-games.html'
+    paginate_by = 8
 
     def get_queryset(self):
-        return Game.objects.all()
+        queryset = Game.objects.all()
+        query = self.request.GET.get('search_form')
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -77,6 +82,7 @@ class GameReview(LoginRequiredMixin, CreateView):
 
 class GameListAllReviews(ListView):
     template_name = 'games/game-all-reviews.html'
+    paginate_by = 5
 
     def get_queryset(self):
         game = get_object_or_404(Game, slug=self.kwargs['slug'])
@@ -87,3 +93,4 @@ class GameListAllReviews(ListView):
         context['account'] = self.request.user
         context['game'] = game = Game.objects.get(slug=self.kwargs['slug'])
         return context
+

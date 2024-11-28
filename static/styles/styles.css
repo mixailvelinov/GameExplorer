@@ -354,7 +354,6 @@ ul {
     width: 80%;
     height: auto;
     overflow: hidden;
-    background-color: blue;
 }
 
 .user-photo img {
@@ -665,6 +664,13 @@ h4 {
 
 .latest-entry {
     position: relative;
+    transition: transform 0.5s ease;
+
+}
+
+.latest-entry:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .entry-badge {
@@ -689,6 +695,12 @@ h4 {
 
 .top-entry {
     position: relative;
+    transition: transform 0.5s ease;
+}
+
+.top-entry:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .entry-badge-top img {
@@ -724,4 +736,37 @@ h4 {
     margin-bottom: 30px;
     background-image: url('/static/backgrounds/index-bg.png');
     box-shadow: 0 0 15px #461952;
+}
+
+.pagination {
+    text-align: center;
+    color: #4ac1f7;
+    font-size: 20px;
+}
+
+.pagination a{
+    text-decoration: none;
+    color: #2c6d8a;
+    padding: 10px;
+    margin: 5px;
+}
+
+.page-button {
+    border: 1px solid #4ac1f7;
+}
+
+.search-field {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-field button {
+    padding: 10px;
+}
+
+.search-field input {
+    padding: 10px;
 }

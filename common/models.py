@@ -10,13 +10,23 @@ class Platform(models.Model):
     platform_name = models.CharField(max_length=20)
     description = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.platform_name
+
 
 class Genre(models.Model):
     genre_name = models.CharField(max_length=20)
     description = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.genre_name
+
 
 class GameSuggestion(models.Model):
     game_suggestion_name = models.CharField(max_length=30)
-    description = models.CharField(max_length=500, null=True, blank=True)
+    description = models.TextField(max_length=500, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     user = ForeignKey(Account, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.game_suggestion_name
