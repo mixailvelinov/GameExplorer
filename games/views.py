@@ -28,7 +28,7 @@ class GamesListView(ListView):
 class AllGamesView(ListView):
     model = Game
     template_name = 'games/all-games.html'
-    paginate_by = 8
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = Game.objects.all()
