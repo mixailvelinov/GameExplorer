@@ -85,7 +85,6 @@ class GameReview(LoginRequiredMixin, CreateView):
         return context
 
 
-
 #API
 class GameListAllReviews(ListView):
     template_name = 'games/game-all-reviews.html'
