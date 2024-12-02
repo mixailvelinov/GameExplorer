@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.test import TestCase
 
@@ -38,4 +39,13 @@ class AccountEditViewTest(TestCase):
         self.assertFalse(self.user.profile.first_name, 'test')
         self.assertFalse(self.user.profile.last_name, 'test')
 
+    def test_editing_account_first_name_is_digits__validation_error(self):
+        self.client.login(username='test_email@test.test', password='test_password')
 
+        data = {
+            'first_name': '78'
+        }
+
+        self.client.post(self.profile_url, data)
+        self.user.refresh_from_db()
+        self.assertRaises(ValidationError)
