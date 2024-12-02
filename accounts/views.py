@@ -25,6 +25,7 @@ class AccountRegisterView(CreateView):
         login(self.request, self.object)
         return response
 
+
 class AccountLoginView(LoginView):
     form_class = AccountLoginForm
     template_name = 'accounts/login-page.html'

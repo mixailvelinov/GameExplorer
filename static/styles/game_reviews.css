@@ -52,6 +52,8 @@
     width: 70px;
     height: 70px;
     box-shadow: 0 0 7px #4ac1f7;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .reviewer-photo img {
@@ -69,8 +71,15 @@
     margin-bottom: 10px;
 }
 
+.review-card-reviewer-details p{
+    font-size: 13px;
+    padding-top:5px;
+
+}
+
 .review-card-review-details p:first-of-type {
     font-family: 'Orbitron', sans-serif;
+
 }
 
 .review-card-review-details p:nth-of-type(2) {
@@ -152,4 +161,23 @@ h4 {
 
 .game-photo-review:hover {
     transform: scale(1.1);
+}
+
+.review-buttons {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.review-buttons button {
+    margin: 0;
+    padding: 10px;
+}
+
+.review-buttons a:nth-of-type(2) button:hover {
+    background-color: #8d0d0d;
+}
+
+.confirmation {
+    text-align: center;
 }

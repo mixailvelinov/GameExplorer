@@ -7,6 +7,8 @@ urlpatterns = [
     path('all-games', views.AllGamesView.as_view(), name='all-games'),
     path('<slug:slug>', views.GameDetailView.as_view(), name='games-detail'),
     path('<slug:slug>/review/', views.GameReview.as_view(), name='games-review'),
+    path('<slug:slug>/review/<int:id>/edit', views.EditGameReview.as_view(), name='edit-review'),
+    path('<slug:slug>/review/<int:id>/delete', views.DeleteGameReview.as_view(), name='delete-review'),
     path('<slug:slug>/all-reviews/', views.GameListAllReviews.as_view(), name='game-all-reviews'),
 
     #API

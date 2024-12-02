@@ -16,9 +16,15 @@
                 <p>Player rating: {{ review.rating }} / 5</p>
                 <p>{% if review.review %}{{ review.review }} {% else %} Comment not provided. {% endif %}</p>
                 <h4>{{ review.created_at|date:"j F, Y" }}</h4>
-
+                {% if account == request.user %}
+                <div class="review-buttons">
+                    <a href="{% url 'edit-review' slug=review.game.slug id=review.id %}"><button>Edit</button></a>
+                    <a href="{% url 'delete-review' slug=review.game.slug id=review.id %}"><button>Delete</button></a>
+                </div>
+            {% endif %}
             </div>
         </div>
+
     {% endfor %}
     {% else %}
     <h2>No reviews yet...</h2>

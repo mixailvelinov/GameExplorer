@@ -1,8 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import  Avg
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
@@ -84,6 +85,46 @@ class GameReview(LoginRequiredMixin, CreateView):
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
         return context
 
+
+class EditGameReview(LoginRequiredMixin, UpdateView):
+    model = Review
+    template_name = 'games/game-review.html'
+    form_class = GameReviewForm
+    pk_url_kwarg = 'id'
+
+    def get_success_url(self):
+        return reverse_lazy('games-detail', kwargs={'slug': self.kwargs['slug']})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = self.request.user
+        context['game'] = Game.objects.get(slug=self.kwargs['slug'])
+        return context
+
+    def get_object(self, queryset=None):
+        review = Review.objects.get(id=self.kwargs['id'])
+        if review.user != self.request.user:
+            raise PermissionDenied("You do not have permission to edit this review.")
+        return review
+
+
+class DeleteGameReview(LoginRequiredMixin, DeleteView):
+    model = Review
+    template_name = 'games/game-review-delete.html'
+    pk_url_kwarg = 'id'
+    success_url = reverse_lazy('games-list')
+
+    def get_object(self, queryset=None):
+        review = get_object_or_404(Review, id=self.kwargs['id'])
+        if review.user != self.request.user:
+            raise PermissionDenied("You do not have permission to delete this review.")
+        return review
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['account'] = self.request.user
+        context['game'] = Game.objects.get(slug=self.kwargs['slug'])
+        return context
 
 #API
 class GameListAllReviews(ListView):
