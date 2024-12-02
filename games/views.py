@@ -1,15 +1,19 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Sum, Avg, Q
-from django.shortcuts import render, get_object_or_404
+from django.db.models import  Avg
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, \
+    RetrieveDestroyAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from games.forms import GameReviewForm
 from games.models import Game, Review
-
-# Create your views here.
+from GameExplorer.permissions import IsModerator, IsAdmin
+from games.serializers import GameSerializer, ReviewSerializer
 
 
 class GamesListView(ListView):
@@ -77,10 +81,12 @@ class GameReview(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account'] = self.request.user
-        context['game'] = game = Game.objects.get(slug=self.kwargs['slug'])
+        context['game'] = Game.objects.get(slug=self.kwargs['slug'])
         return context
 
 
+
+#API
 class GameListAllReviews(ListView):
     template_name = 'games/game-all-reviews.html'
     paginate_by = 5
@@ -92,6 +98,49 @@ class GameListAllReviews(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account'] = self.request.user
-        context['game'] = game = Game.objects.get(slug=self.kwargs['slug'])
+        context['game'] = Game.objects.get(slug=self.kwargs['slug'])
         return context
 
+
+class GamesViewAPI(APIView):
+    def get(self, req):
+        games = Game.objects.all()
+        serializer = GameSerializer(games, many=True)
+        permission_classes = [IsModerator]
+        return Response({'games': serializer.data})
+
+
+class UpdateExistingGame(RetrieveUpdateAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+    lookup_field = 'slug'
+    permission_classes = [IsModerator]
+
+
+class DeleteExistingGame(RetrieveDestroyAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+    permission_classes = [IsAdmin]
+    lookup_field = 'slug'
+
+
+class GameCreateApiView(CreateAPIView):
+    model = Game
+    serializer_class = GameSerializer
+    permission_classes = [IsAdmin]
+
+
+class ModifyReviewAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [IsModerator]
+    lookup_field = 'id'
+
+
+class ListAllGameReviewsAPIView(ListAPIView):
+    serializer_class = ReviewSerializer
+    permission_classes = [IsModerator]
+
+    def get_queryset(self):
+        game_slug = self.kwargs.get('slug')
+        return Review.objects.filter(game__slug=game_slug)

@@ -1,16 +1,18 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Avg, Sum
-from django.db.models.functions import Coalesce
-from django.forms import FloatField
+from django.db.models import Avg
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView, CreateAPIView
 
 from accounts.models import Profile
 from common.forms import GameSuggestionForm
-from common.models import GameSuggestion
+from common.models import GameSuggestion, Platform, Genre
+from common.serializers import PlatformSerializer, GenreSerializer
 from games.models import Game
 
+from GameExplorer.permissions import IsModerator, IsAdmin
 
 # Create your views here.
 
@@ -48,15 +50,56 @@ class GameSuggestionCreate(LoginRequiredMixin, CreateView):
     model = GameSuggestion
     form_class = GameSuggestionForm
     template_name = 'common/game-suggestion-page.html'
-    success_url = reverse_lazy('index') #either make a message that appears with JS or a new template with a message that the suggestion was recorded
+    success_url = reverse_lazy('suggestion_create')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
+
+        messages.success(self.request, "Thank you! Your suggestion has been submitted and is under review.")
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account'] = self.request.user
         return context
+
+#API
+class AllPlatformsAPIView(ListAPIView):
+    queryset = Platform.objects.all()
+    serializer_class = PlatformSerializer
+    permission_classes = [IsModerator]
+
+
+class ManagePlatformAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Platform.objects.all()
+    serializer_class = PlatformSerializer
+    lookup_field = 'id'
+    permission_classes = [IsAdmin]
+
+
+class CreatePlatformAPIView(CreateAPIView):
+    queryset = Platform.objects.all()
+    serializer_class = PlatformSerializer
+    permission_classes = [IsAdmin]
+
+
+class AllGenresAPIView(ListAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+    permission_classes = [IsModerator]
+
+
+class ManageGenreAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+    lookup_field = 'id'
+    permission_classes = [IsAdmin]
+
+
+class CreateGenreAPIView(CreateAPIView):
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
+    permission_classes = [IsAdmin]

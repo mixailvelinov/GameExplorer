@@ -1,4 +1,4 @@
-game-name {
+.game-name {
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -18,13 +18,14 @@ game-name {
 }
 
 .photo-borders {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     overflow: scroll;
     overflow-x: hidden;
     transition: transform 0.5s ease, box-shadow 0.5s ease; /* Add transition for box-shadow */
-
 }
+
+
 
 .photo-borders:hover {
     box-shadow: -15px -15px 30px 10px rgba(47, 40, 238, 0.2);  /* Glowing effect with #2f28ee */
@@ -52,12 +53,16 @@ game-name {
 }
 
 .game-card {
-    max-width: 30%;
+    max-width: 300px;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     margin-bottom: 30px;
+    padding: 10px;
+    background: rgba(40, 40, 40, 0.1);
+    border-radius: 15px;
+
 
 }
 
@@ -135,11 +140,6 @@ ul {
 .game-image-container {
     width: 300px;
     height: auto;
-}
-
-.game-image-container img {
-    display: block;
-    width: 100%;
 }
 
 .game-system-details h2 {

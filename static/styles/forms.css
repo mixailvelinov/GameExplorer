@@ -59,3 +59,12 @@ button:hover {
 p {
     color: white;
 }
+
+.confirmation-message {
+    margin: 20px;
+    padding: 5px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+}
+

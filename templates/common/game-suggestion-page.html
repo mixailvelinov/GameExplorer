@@ -2,18 +2,29 @@
 
 {% block content %}
 
-<section class="game-review-container"  >
+<section class="game-review-container">
     <h2>Game Suggestion</h2>
-        <div class='game-review-form-div'>
-            <form method='POST' action="">
-                {% csrf_token %}
-                <p>Game name:</p>
-                {{ form.game_suggestion_name }}
-                <p>Share a few words about the game that you wish to be added:</p>
-                {{ form.description }}
-                <button>Submit</button>
-            </form>
-        </div>
+    <div class='game-review-form-div'>
 
+
+        <form id='game-suggestion-form' method='POST' action="">
+            {% csrf_token %}
+            <p>Game name:</p>
+            {{ form.game_suggestion_name }}
+            <p>Share a few words about the game that you wish to be added:</p>
+            {{ form.description }}
+            <button>Submit</button>
+        </form>
+
+    </div>
+
+    {% if messages %}
+        <div class="confirmation-message">
+            {% for message in messages %}
+                <P>{{ message }}</P>
+            {% endfor %}
+        </div>
+    {% endif %}
 </section>
+
 {% endblock %}

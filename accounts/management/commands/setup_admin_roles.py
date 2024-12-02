@@ -10,16 +10,13 @@ class Command(BaseCommand):
         superusers_group, _ = Group.objects.get_or_create(name="Superusers")
         moderators_group, _ = Group.objects.get_or_create(name="Moderators")
 
-        # Assign all permissions to Superusers
         all_permissions = Permission.objects.all()
         superusers_group.permissions.set(all_permissions)  # Assign all permissions
 
-        # Define specific permissions for Moderators
         moderator_permissions = [
-            "change_game", "delete_review", "add_review", "change_review"
+            "view_game", "change_game", "delete_review", "add_review", "change_review", "change_review"
         ]
 
-        # Assign specific permissions to Moderators
         for codename in moderator_permissions:
             permission = Permission.objects.filter(codename=codename).first()
             if permission:
