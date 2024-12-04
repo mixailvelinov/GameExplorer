@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="game-add-container">
+    <h2>Game details</h2>
+        <div class='game-review-form-div'>
+            <form method='POST' action="">
+                {% csrf_token %}
+                {{ form.name }}
+                {{ form.release_date }}
+                {{ form.genre }}
+                {{ form.platform }}
+                {{ form.developer }}
+                {{ form.description }}
+                {{ form.game_cover }}
+                <button>Delete</button>
+            </form>
+        </div>
+
+</section>
+{% endblock %}

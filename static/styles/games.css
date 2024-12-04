@@ -165,14 +165,13 @@ ul {
     display: flex;
     margin-top: 50px;
     margin-bottom: 30px;
-    width: 40%;
+    width: 300px;
     height: auto;
 }
 
 .game-photo img {
     display: block;
-    width: 300px;
-    height: auto;
+    width: 100%;
     box-shadow: 0 0 9px #4ac1f7;
 }
 
@@ -192,7 +191,6 @@ ul {
 }
 
 .game-description-container {
-    padding-top: 20px;
     width: 40%;
     margin: 0 auto;
     font-style: italic;
@@ -207,4 +205,9 @@ ul {
 
 .game-h1 {
     margin-bottom: 5px;
+}
+
+.api {
+    font-style: italic;
+    text-align: center;
 }

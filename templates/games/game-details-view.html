@@ -3,7 +3,8 @@
 {% block content %}
 <h1 class="game-h1">{{ game.name }}</h1>
 <a class="mark-as-played-btn" href="{% url 'games-review' game.slug %}"><button>MARK AS PLAYED</button></a>
-<div class="game-details-block">
+
+    <div class="game-details-block">
     <section class="game-details-card">
             <div class="game-photo">
                 <img src="{{ game.game_cover }}" alt="">
@@ -19,12 +20,7 @@
 
             <h2>RATING: {% if total_rating %}{{ total_rating|floatformat:"2" }}/5{% else %}No reviews yet{% endif %}</h2>
             <h2><a class='h2-button-reviews' href="{% url 'game-all-reviews' slug=game.slug %}">REVIEWS</a> </h2> {#continue once the backend logic is completed#}
-            {% if user.is_superuser %}
-                <div class="game-admin-buttons">
-                    <a href="{% url 'edit-game' slug=game.slug %}"><button>Edit</button></a>
-                    <a href="#"><button>Delete</button></a>
-                </div>
-            {% endif %}
+
         </div>
 
 
@@ -33,5 +29,13 @@
     <div class="game-description-container">
         <p>{{ game.description }}</p>
     </div>
+                {% if user.is_superuser %}
+                    <div class="game-admin-buttons">
+                        <a href="{% url 'edit-game' slug=game.slug %}"><button>Edit</button></a>
+                        <a href="{% url 'delete-game' slug=game.slug %}"><button>Delete</button></a>
+                        <a href="{% url 'manage-games-api-view' slug=game.slug %}"><button>Manage with API</button></a>
+                    </div>
+                {% endif %}
+
 
 {% endblock %}

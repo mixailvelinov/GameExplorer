@@ -2,19 +2,20 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.db.models import Avg
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from rest_framework import status
 
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveDestroyAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from games.forms import GameReviewForm, GameForm
+from games.forms import GameReviewForm, GameForm, DeleteGame
 from games.models import Game, Review
 from GameExplorer.permissions import IsModerator, IsAdmin
 from games.serializers import GameSerializer, ReviewSerializer
+
 
 
 class GamesListView(ListView):
@@ -98,8 +99,9 @@ class DeleteGameReview(LoginRequiredMixin, DeleteView):
 
     def get_object(self, queryset=None):
         review = get_object_or_404(Review, id=self.kwargs['id'])
-        if review.user != self.request.user and not review.user.is_staff:
-            raise PermissionDenied("You do not have permission to delete this review.")
+        if not self.request.user.is_staff:
+            if review.user != self.request.user:
+                raise PermissionDenied("You do not have permission to delete this review.")
         return review
 
     def get_context_data(self, **kwargs):
@@ -108,7 +110,6 @@ class DeleteGameReview(LoginRequiredMixin, DeleteView):
         return context
 
 
-#Admin only views
 class AddGame(CreateView):
     model = Game
     form_class = GameForm
@@ -116,6 +117,11 @@ class AddGame(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('games-detail', kwargs={'slug': self.object.slug})
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class EditGame(UpdateView):
@@ -125,6 +131,28 @@ class EditGame(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('games-detail', kwargs={'slug': self.object.slug})
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
+
+    def has_permission(self):
+        return self.request.user.is_superuser
+
+def delete_game(request, slug):
+    game = Game.objects.get(slug=slug)
+    form = DeleteGame(instance=game)
+
+    if not request.user.is_superuser:
+        return redirect('index')
+
+    if request.method == 'POST':
+        game.delete()
+        return redirect('games-list')
+
+    context = {'game': game, 'form': form}
+    return render(request, 'games/delete-game.html', context)
 
 
 #API
@@ -179,7 +207,7 @@ class ManageGameAPIView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class ModifyReviewAPIView(RetrieveUpdateDestroyAPIView):
+class ManageReviewAPIView(RetrieveDestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [IsModerator]

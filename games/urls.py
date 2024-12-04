@@ -8,6 +8,7 @@ urlpatterns = [
     path('add/', views.AddGame.as_view(), name='add-game'),
     path('<slug:slug>/', views.GameDetailView.as_view(), name='games-detail'),
     path('<slug:slug>/edit/', views.EditGame.as_view(), name='edit-game'),
+    path('<slug:slug>/delete', views.delete_game, name='delete-game'),
     path('<slug:slug>/review/', views.GameReview.as_view(), name='games-review'),
     path('<slug:slug>/review/<int:id>/edit', views.EditGameReview.as_view(), name='edit-review'),
     path('<slug:slug>/review/<int:id>/delete', views.DeleteGameReview.as_view(), name='delete-review'),
@@ -16,5 +17,5 @@ urlpatterns = [
     # API
     path('api/<slug:slug>', views.ManageGameAPIView.as_view(), name='manage-games-api-view'),
     path('api/<slug:slug>/review/', views.ListAllGameReviewsAPIView.as_view(), name='list-all-game-reviews'),
-    path('api/<slug:slug>/review/<int:id>/', views.ModifyReviewAPIView.as_view(), name='modify-review'),
+    path('api/<slug:slug>/review/<int:id>/', views.ManageReviewAPIView.as_view(), name='modify-review'),
 ]

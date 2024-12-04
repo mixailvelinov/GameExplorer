@@ -195,5 +195,12 @@ h4 {
 }
 
 .game-admin-buttons {
-    margin-left: 15px;
+    margin: 0 auto;
 }
+
+.game-admin-buttons button{
+    margin: 0;
+    background-color: #4ac1f7;
+    padding: 2px 20px;
+}
+

@@ -2,7 +2,7 @@
 
 {% block content %}
 <section class="game-review-container">
-    <h2>Are you sure you want to delete your review for {{ game.name }}?</h2>
+    <h2>Delete review for {{ game.name }}?</h2>
 
     <div class='game-review-form-div'>
         <form method="POST">
@@ -12,7 +12,7 @@
 
             <div class="confirmation">
                 <p>This action cannot be undone.</p>
-                <button type="submit">Yes, Delete</button>
+                <button type="submit">Delete</button>
                 <a href="{% url 'games-detail' slug=game.slug %}"><button type="button">Cancel</button></a>
             </div>
         </form>

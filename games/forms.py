@@ -25,3 +25,9 @@ class GameForm(forms.ModelForm):
     description = forms.CharField(widget=forms.Textarea(attrs={'placeholder': "What's the game about? Share a bit without spoiling the whole story..."}))
     game_cover = forms.URLField(widget=forms.TextInput(attrs={'placeholder': 'Game cover URL'}))
 
+
+class DeleteGame(GameForm):
+    def __init__(self, *args, **kwargs):
+        super(DeleteGame, self).__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['disabled'] = 'disabled'
