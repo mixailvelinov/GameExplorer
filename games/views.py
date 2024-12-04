@@ -137,8 +137,6 @@ class EditGame(UpdateView):
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)
 
-    def has_permission(self):
-        return self.request.user.is_superuser
 
 def delete_game(request, slug):
     game = Game.objects.get(slug=slug)
@@ -184,12 +182,13 @@ class ManageGameAPIView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = GameSerializer(data=request.data)
         if serializer.is_valid():
+            game_instance = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
         game = Game.objects.get(slug=kwargs['slug'])
-        if game:
+        if not game:
             return Response({'detail': 'Game not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = GameSerializer(game, data=request.data, partial=True)
@@ -200,7 +199,7 @@ class ManageGameAPIView(APIView):
 
     def delete(self, request, *args, **kwargs):
         game = Game.objects.get(slug=kwargs['slug'])
-        if game:
+        if not game:
             return Response({"detail": "Game not found."}, status=status.HTTP_404_NOT_FOUND)
 
         game.delete()

@@ -31,6 +31,7 @@
     padding-bottom: 30px;
     background-image: url("/static/backgrounds/game-add-bg.png");
     background-position: center;
+    margin-bottom: 30px;
 }
 
 .game-add-container button {

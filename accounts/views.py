@@ -72,6 +72,7 @@ class AccountEditView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('account-details', kwargs={'id': self.object.user.id})
 
 
+
 def account_delete(request, id):
     account = get_object_or_404(Account, id=id)
     context = {'account': account}

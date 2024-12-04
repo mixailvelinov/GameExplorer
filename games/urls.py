@@ -15,7 +15,7 @@ urlpatterns = [
     path('<slug:slug>/all-reviews/', views.GameListAllReviews.as_view(), name='game-all-reviews'),
 
     # API
-    path('api/<slug:slug>', views.ManageGameAPIView.as_view(), name='manage-games-api-view'),
+    path('api/<slug:slug>/', views.ManageGameAPIView.as_view(), name='manage-games-api-view'),
     path('api/<slug:slug>/review/', views.ListAllGameReviewsAPIView.as_view(), name='list-all-game-reviews'),
     path('api/<slug:slug>/review/<int:id>/', views.ManageReviewAPIView.as_view(), name='modify-review'),
 ]
