@@ -19,6 +19,9 @@
         <a href="{% url 'index' %}"><img src="{% static 'logo/file (1).png' %}" alt=""></a>
     </header>
             <nav>
+                {% if user.is_superuser %}
+                    <a href="{% url 'add-game' %}">Add Game</a>
+                {% endif %}
                 <a href="{% url 'games-list' %}">Games</a>
                 {% if user.is_authenticated %}
                     <a href="{% url 'account-details' request.user.id %}">Profile</a>

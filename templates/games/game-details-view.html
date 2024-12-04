@@ -19,9 +19,15 @@
 
             <h2>RATING: {% if total_rating %}{{ total_rating|floatformat:"2" }}/5{% else %}No reviews yet{% endif %}</h2>
             <h2><a class='h2-button-reviews' href="{% url 'game-all-reviews' slug=game.slug %}">REVIEWS</a> </h2> {#continue once the backend logic is completed#}
-
-
+            {% if user.is_superuser %}
+                <div class="game-admin-buttons">
+                    <a href="{% url 'edit-game' slug=game.slug %}"><button>Edit</button></a>
+                    <a href="#"><button>Delete</button></a>
+                </div>
+            {% endif %}
         </div>
+
+
     </section>
 </div>
     <div class="game-description-container">
