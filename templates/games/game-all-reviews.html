@@ -23,7 +23,7 @@
                 <p>{% if review.review %}{{ review.review }} {% else %} Comment not provided. {% endif %}</p>
                 <h4>{{ review.created_at|date:"j F, Y" }}</h4>
 
-            {% if review.user == account %}
+            {% if review.user == request.user %}
                 <div class="review-buttons">
                     <a href="{% url 'edit-review' slug=game.slug id=review.id %}"><button>Edit</button></a>
                     <a href="{% url 'delete-review' slug=game.slug id=review.id %}"><button>Delete</button></a>

@@ -24,11 +24,6 @@ class GamesListView(ListView):
     def get_queryset(self):
         return Game.objects.all().order_by('-release_date')[:3]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
-        return context
-
 
 class AllGamesView(ListView):
     model = Game
@@ -42,10 +37,6 @@ class AllGamesView(ListView):
             queryset = queryset.filter(name__icontains=query)
         return queryset
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
-        return context
 
 
 class GameDetailView(DetailView):
@@ -55,7 +46,6 @@ class GameDetailView(DetailView):
     def get_context_data(self, **kwargs):
         game = get_object_or_404(Game, slug=self.kwargs['slug'])
         context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
         context['total_rating'] = game.review_set.all().aggregate(Avg('rating'))['rating__avg']
         return context
 
@@ -81,7 +71,6 @@ class GameReview(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
         return context
 
@@ -94,12 +83,6 @@ class EditGameReview(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('games-detail', kwargs={'slug': self.kwargs['slug']})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
-        context['game'] = Game.objects.get(slug=self.kwargs['slug'])
-        return context
 
     def get_object(self, queryset=None):
         review = Review.objects.get(id=self.kwargs['id'])
@@ -122,7 +105,6 @@ class DeleteGameReview(LoginRequiredMixin, DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
         return context
 
@@ -137,7 +119,6 @@ class GameListAllReviews(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['account'] = self.request.user
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
         return context
 

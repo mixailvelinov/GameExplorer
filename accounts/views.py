@@ -1,10 +1,11 @@
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, CreateView, FormView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, UpdateView, ListView
 from django.urls import reverse_lazy
 
 from accounts.forms import AccountRegisterForm, AccountLoginForm, AccountEditForm
@@ -13,6 +14,8 @@ from games.models import Review
 
 
 # Create your views here.
+
+AccountModel = get_user_model()
 
 class AccountRegisterView(CreateView):
     model = Account
@@ -36,6 +39,7 @@ class AccountLogoutView(LogoutView):
     pass
 
 
+@login_required
 def account_details(request, id):
     account = get_object_or_404(Account, id=id)
 
