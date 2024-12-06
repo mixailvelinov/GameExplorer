@@ -4,15 +4,11 @@ from django.db.models import Avg
 from django.shortcuts import render
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView, CreateAPIView
 
 from accounts.models import Profile
 from common.forms import GameSuggestionForm
-from common.models import GameSuggestion, Platform, Genre
-from common.serializers import PlatformSerializer, GenreSerializer
+from common.models import GameSuggestion
 from games.models import Game
-
-from GameExplorer.permissions import IsModerator, IsAdmin
 
 # Create your views here.
 
@@ -58,7 +54,6 @@ class GameSuggestionCreate(LoginRequiredMixin, CreateView):
         self.object.save()
 
         messages.success(self.request, "Thank you! Your suggestion has been submitted and is under review.")
-
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

@@ -15,7 +15,6 @@ from games.models import Review
 
 # Create your views here.
 
-AccountModel = get_user_model()
 
 class AccountRegisterView(CreateView):
     model = Account
@@ -70,7 +69,6 @@ class AccountEditView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('account-details', kwargs={'id': self.object.user.id})
-
 
 
 def account_delete(request, id):

@@ -2,7 +2,10 @@
     width: 300px;
     height: 280px;
     overflow: hidden;
-        box-shadow: 0 0 7px #4ac1f7;
+    box-shadow: 0 0 7px #4ac1f7;
+        display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -10,15 +13,18 @@
     display: block;
     width: 100%;
     height: auto;
-    overflow: hidden;
 }
 
 .game-card-index {
     padding-top: 50px;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 90px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+    border-radius: 5px;
 }
 
 .latest-entry {
@@ -92,6 +98,7 @@
     background-color: #0e0e0e;
     border-radius: 10px;
     padding-bottom: 25px;
+    margin-top: 20px;
     margin-bottom: 30px;
     background-image: url('/static/backgrounds/index-bg.png');
     box-shadow: 0 0 15px #461952;

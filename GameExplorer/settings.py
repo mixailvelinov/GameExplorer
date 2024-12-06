@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 from django.urls import reverse_lazy
 from decouple import config
@@ -23,11 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+#change to this when deploying:
+# SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
+#for deployment
+# DEBUG = os.getenv('DEBUG', config('DEBUG')) == 'True'
+
 
 ALLOWED_HOSTS = []
+#for deployment
+#ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS').split(', '))
+
+# CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', []).split(', '))
+
 
 
 # Application definition
@@ -42,7 +52,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'games',
     'common'
 ]
@@ -95,6 +105,18 @@ DATABASES = {
     }
 }
 
+#for deployment
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         'NAME': os.getenv('DB_NAME', config('DB_NAME')),
+#         'USER': os.getenv('DB_USER', config('DB_USER')),
+#         'PASSWORD': os.getenv('DB_PASSWORD', config('DB_PASSWORD')),
+#         'HOST': os.getenv('DB_HOST', config('DB_HOST')),
+#         'PORT': os.getenv('DB_PORT', config('DB_PORT')),
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -146,3 +168,12 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST', config('EMAIL_HOST'))
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', config('EMAIL_HOST_USER'))
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', config('EMAIL_HOST_PASSWORD'))
+EMAIL_PORT = os.getenv('EMAIL_PORT', config('EMAIL_PORT'))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', config('EMAIL_USE_TLS')) == 'True'
+COMPANY_EMAIL = os.getenv('COMPANY_EMAIL', config('COMPANY_EMAIL'))
+
