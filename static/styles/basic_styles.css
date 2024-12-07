@@ -91,3 +91,17 @@ h2 {
     border-radius: 5px;
     box-shadow: 0 0 10px #3584a8;
 }
+
+.fa-trash-o {
+    color: #4ac1f7;
+    margin-left: 20px;
+    transition: transform 0.5s ease;
+
+}
+
+.fa-trash-o:hover {
+    color: red;
+    transform: scale(1.8);
+
+}
+

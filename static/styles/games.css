@@ -211,3 +211,39 @@ ul {
     font-style: italic;
     text-align: center;
 }
+
+.check-suggestions {
+    margin: 0 auto;
+}
+
+.check-suggestions a button {
+    margin: 0;
+}
+
+.all-suggestions {
+    margin: 0 auto;
+    background-color: rgba(8, 6, 51, 0.3);
+    width: 50%;
+    box-shadow: 0 0 9px #2a6b88;
+    margin-bottom: 20px;
+    font-family: "Exo 2", serif;
+
+}
+
+.suggestion {
+    color: #4ac1f7;
+    margin: 0 auto;
+}
+
+.all-suggestions ul {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.hidden-button {
+    border: none;
+    background: none;
+    padding: 0;
+}

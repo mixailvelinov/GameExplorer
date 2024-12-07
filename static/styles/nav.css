@@ -5,15 +5,14 @@ nav {
 }
 
 nav a {
-    margin: 40px;
+    margin: 30px;
     padding-left: 40px;
     padding-right: 40px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'Orbitron', sans-serif;
     color: #40b3ff;
 }
-
 
 nav a:hover {
     color: white;

@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
 
 from accounts.models import Profile
@@ -96,3 +96,22 @@ class CreateGenre(LoginRequiredMixin, CreateView):
             return redirect('index')
         return super().dispatch(request, *args, **kwargs)
 
+
+class GameSuggestionsList(ListView):
+    model = GameSuggestion
+    template_name = 'common/view-game-suggestions.html'
+    paginate_by = 8
+
+
+def delete_game_suggestion(request, id):
+    game = GameSuggestion.objects.get(id=id)
+
+    if not request.user.is_superuser or game is None:
+        return redirect('index')
+
+    if request.method == 'POST':
+        game.delete()
+        return redirect('game-suggestions-list')
+
+    context = {'game': game}
+    return render(request, 'common/view-game-suggestions.html', context)
