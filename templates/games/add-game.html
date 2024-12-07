@@ -4,19 +4,76 @@
 
 <section class="game-add-container">
     <h2>Game details</h2>
-        <div class='game-review-form-div'>
-            <form method='POST' action="">
-                {% csrf_token %}
-                {{ form.name }}
-                {{ form.release_date }}
-                {{ form.genre }}
-                {{ form.platform }}
-                {{ form.developer }}
-                {{ form.description }}
-                {{ form.game_cover }}
-                <button>Save</button>
-            </form>
-        </div>
+    <div class='game-review-form-div'>
+        <form method='POST' action="">
+            {% csrf_token %}
 
+            {{ form.name }}
+            {% if form.name.errors %}
+                <ul class="form-error">
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.release_date }}
+            {% if form.release_date.errors %}
+                <ul class="form-error">
+                    {% for error in form.release_date.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.genre }}
+            {% if form.genre.errors %}
+                <ul class="form-error">
+                    {% for error in form.genre.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.platform }}
+            {% if form.platform.errors %}
+                <ul class="form-error">
+                    {% for error in form.platform.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.developer }}
+            {% if form.developer.errors %}
+                <ul class="form-error">
+                    {% for error in form.developer.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.description }}
+            {% if form.description.errors %}
+                <ul class="form-error">
+                    {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.game_cover }}
+            {% if form.game_cover.errors %}
+                <ul class="form-error">
+                    {% for error in form.game_cover.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <button>Save</button>
+        </form>
+    </div>
 </section>
+
 {% endblock %}

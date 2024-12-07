@@ -3,13 +3,14 @@ from django.db import models
 from django.utils.text import slugify
 
 from common.models import Platform, Genre
+from common.validators import game_platform_and_genre_name_validator
 
 
 # Create your models here.
 
 
 class Game(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, validators=[game_platform_and_genre_name_validator])
     release_date = models.DateField()
     genre = models.ManyToManyField(Genre)
     platform = models.ManyToManyField(Platform)

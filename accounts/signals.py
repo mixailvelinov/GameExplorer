@@ -10,7 +10,6 @@ from accounts.models import Account, Profile
 @receiver(post_save, sender=Account)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        print('sending email...')
         Profile.objects.get_or_create(user=instance)
         send_mail(
             subject='Welcome to GameExplorer!',

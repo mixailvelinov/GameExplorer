@@ -54,8 +54,6 @@
     max-width: 45%;
     height: auto;
     display: flex;
-    flex-direction: row;
-    border-radius:10px;
     margin-bottom: 20px;
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 7px #000000;
