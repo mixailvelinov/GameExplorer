@@ -21,6 +21,8 @@
             <nav>
                 {% if user.is_superuser %}
                     <a href="{% url 'add-game' %}">Add Game</a>
+                    <a href="{% url 'add-platform' %}">Add Platform</a>
+                    <a href="{% url 'add-genre' %}">Add Genre</a>
                 {% endif %}
                 <a href="{% url 'games-list' %}">Games</a>
                 {% if user.is_authenticated %}

@@ -1,13 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Avg
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from accounts.models import Profile
-from common.forms import GameSuggestionForm
-from common.models import GameSuggestion
+from common.forms import GameSuggestionForm, AddPlatformForm, AddGenreForm
+from common.models import GameSuggestion, Platform, Genre
 from games.models import Game
 
 # Create your views here.
@@ -60,3 +60,39 @@ class GameSuggestionCreate(LoginRequiredMixin, CreateView):
         context = super().get_context_data(**kwargs)
         context['account'] = self.request.user
         return context
+
+
+#Admin only views
+class CreatePlatform(LoginRequiredMixin, CreateView):
+    model = Platform
+    form_class = AddPlatformForm
+    template_name = 'common/create-platform.html'
+    success_url = reverse_lazy('add-platform')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Platform added and can be assigned to games.")
+        return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class CreateGenre(LoginRequiredMixin, CreateView):
+    model = Genre
+    form_class = AddGenreForm
+    template_name = 'common/create-genre.html'
+    success_url = reverse_lazy('add-genre')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        messages.success(self.request, "Genre added and can be assigned to games.")
+        return super().form_valid(form)
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
+
