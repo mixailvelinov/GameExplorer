@@ -1,0 +1,213 @@
+.game-name {
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+.games-list {
+    margin: 0 auto;
+    padding-top: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 90%;
+}
+
+
+.p-description {
+    width: 80%;
+}
+
+.photo-borders {
+    width: 300px;
+    height: 300px;
+    overflow: scroll;
+    overflow-x: hidden;
+    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Add transition for box-shadow */
+}
+
+
+
+.photo-borders:hover {
+    box-shadow: -15px -15px 30px 10px rgba(47, 40, 238, 0.2);  /* Glowing effect with #2f28ee */
+}
+
+
+.photo-borders::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    color: #40b3ff;
+}
+
+.photo-borders::-webkit-scrollbar-track {
+    background-color: black; /* Set background color of the track */
+    border-radius: 10px;
+}
+
+.photo-borders::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+.photo-borders::-webkit-scrollbar-thumb:hover {
+    background-color: #40b3ff;
+}
+
+.game-card {
+    max-width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    padding: 10px;
+    background: rgba(40, 40, 40, 0.1);
+    border-radius: 15px;
+
+
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+
+.game-card img:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.all-games{
+    margin: 0 auto;
+    background-color: rgba(24, 14, 218, 0.05);
+    width: 50%;
+    box-shadow: 0 0 9px #2a6b88;
+    margin-bottom: 40px;
+
+}
+
+.all-games p {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+}
+
+.all-games p a {
+    text-decoration: none;
+    color: white;
+}
+
+.all-games p a:hover{
+    color: #40b3ff;
+}
+
+.game-list-h2 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    margin: 30px;
+    font-size: 40px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.all-games ul li {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    margin: 15px;
+}
+
+
+.all-games ul a {
+    text-decoration: none;
+    color:#40b3ff;
+}
+
+.all-games ul a:hover {
+    color: white;
+}
+
+.game-details-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.game-image-container {
+    width: 300px;
+    height: auto;
+}
+
+.game-system-details h2 {
+    text-align: left;
+    font-size: 19px;
+}
+
+
+.game-details-card {
+    margin-top: 10px;
+    padding-left: 30px;
+    display: flex;
+    height: auto;
+    border-radius: 10px;
+    background-image: url("/static/backgrounds/background-game-card.png");
+    box-shadow: 0 0 7px #04171a;
+
+
+}
+
+
+.game-photo {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 300px;
+    height: auto;
+}
+
+.game-photo img {
+    display: block;
+    width: 100%;
+    box-shadow: 0 0 9px #4ac1f7;
+}
+
+.game-details h2 {
+    text-align: left;
+}
+
+.game-details-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-details {
+    margin-top: 40px;
+}
+
+.game-description-container {
+    width: 40%;
+    margin: 0 auto;
+    font-style: italic;
+    text-align: center;
+    font-size: 20px;
+}
+
+.mark-as-played-btn {
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.game-h1 {
+    margin-bottom: 5px;
+}
+
+.api {
+    font-style: italic;
+    text-align: center;
+}

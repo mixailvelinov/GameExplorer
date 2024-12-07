@@ -1,0 +1,10 @@
+@import 'basic_styles.css';
+@import 'index.css';
+@import 'nav.css';
+@import 'games.css';
+@import 'game_reviews.css';
+@import 'forms.css';
+@import 'footer.css';
+@import 'account-details.css';
+@import 'account-close.css';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
