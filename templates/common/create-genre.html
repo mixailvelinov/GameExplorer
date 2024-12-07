@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="genre-container">
+    <h2>Add a new gaming genre: </h2>
+    <div class='game-review-form-div'>
+        <form method='POST' action="">
+            {% csrf_token %}
+
+            {{ form.genre_name }}
+
+            {% if form.genre_name.errors %}
+                <ul class="form-error">
+                    {% for error in form.genre_name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {{ form.description }}
+
+            <button>Save</button>
+        </form>
+    </div>
+
+    {% if messages %}
+        <div class="confirmation-message">
+            {% for message in messages %}
+                <P>{{ message }}</P>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}
