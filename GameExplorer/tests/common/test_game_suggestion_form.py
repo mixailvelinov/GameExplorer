@@ -37,6 +37,6 @@ class GameSuggestionFormTest(TestCase):
         form = GameSuggestionForm(data=invalid_data)
         self.assertFalse(form.is_valid())
         self.assertIn(
-            'Please use only words and letters for the game name.',
+            'Please write the name using letters.',
             form.errors['game_suggestion_name']
         )

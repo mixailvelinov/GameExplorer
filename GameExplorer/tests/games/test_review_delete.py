@@ -18,6 +18,7 @@ class TestDeleteReview(TestCase):
             release_date='2024-12-07',
             developer='Test Dev',
             description='Test description',
+            game_cover='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLK6V2oxYex8l9ylglO8gyZ_q2DMtTvuSHCA&s',
             slug='test-slug'
         )
 
