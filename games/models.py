@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
+from rest_framework.exceptions import ValidationError
 
 from common.models import Platform, Genre
 from common.validators import game_platform_and_genre_name_validator
@@ -10,7 +11,7 @@ from common.validators import game_platform_and_genre_name_validator
 
 
 class Game(models.Model):
-    name = models.CharField(max_length=50, validators=[game_platform_and_genre_name_validator])
+    name = models.CharField(max_length=50, validators=[game_platform_and_genre_name_validator], unique=True)
     release_date = models.DateField()
     genre = models.ManyToManyField(Genre)
     platform = models.ManyToManyField(Platform)
@@ -19,13 +20,16 @@ class Game(models.Model):
     game_cover = models.URLField()
     slug = models.SlugField(unique=True, blank=True)
 
-    def save(self, *args, **kwargs):
+    def clean(self):
+        if Game.objects.filter(slug=self.slug).exclude(id=self.id).exists():
+            raise ValidationError({'slug': 'This slug is already taken. Please choose a different one.'})
+
         if not self.slug:
             self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.name
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
 
 class Review(models.Model):
