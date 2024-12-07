@@ -17,7 +17,7 @@ class GameReviewForm(forms.ModelForm):
 class GameForm(forms.ModelForm):
     class Meta:
         model = Game
-        exclude = ('slug', )
+        fields = '__all__'
 
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Game name'}))
     release_date = forms.DateField(widget=forms.TextInput(attrs={'placeholder': 'Release date (YYYY-MM-DD)'}))

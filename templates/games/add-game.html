@@ -71,6 +71,12 @@
                 </ul>
             {% endif %}
 
+            {% if form.slug.errors %}
+                {% for error in form.slug.errors %}
+                    <div class="form-error">A game with this slug is already added.</div>
+                {% endfor %}
+            {% endif %}
+
             <button>Save</button>
         </form>
     </div>

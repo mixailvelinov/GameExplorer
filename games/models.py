@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
@@ -26,6 +27,11 @@ class Game(models.Model):
 
         if not self.slug:
             self.slug = slugify(self.name)
+
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         self.full_clean()
