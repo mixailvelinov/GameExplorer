@@ -5,7 +5,7 @@ nav {
 }
 
 nav a {
-    margin: 30px;
+    margin: 20px;
     padding-left: 40px;
     padding-right: 40px;
     text-decoration: none;
@@ -17,7 +17,6 @@ nav a {
 nav a:hover {
     color: white;
 }
-
 
 .menu-button {
     background: none;

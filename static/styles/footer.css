@@ -1,9 +1,31 @@
 footer {
     margin-top: auto;
-    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding-top: 30px;
 }
 
 footer p {
     color: #40b3ff;
     font-style: italic;
+}
+
+.contacts {
+    margin-right: 30px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.contacts .fa {
+    color: #40b3ff;
+    margin-left: 10px;
+    transition: transform 0.9s ease;
+}
+
+.contacts .fa:hover {
+    color: white;
+    cursor: pointer;
+    transform: scale(1.5);
 }

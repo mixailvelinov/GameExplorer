@@ -97,10 +97,15 @@ class CreateGenre(LoginRequiredMixin, CreateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class GameSuggestionsList(ListView):
+class GameSuggestionsList(LoginRequiredMixin, ListView):
     model = GameSuggestion
     template_name = 'common/view-game-suggestions.html'
     paginate_by = 8
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
 
 
 def delete_game_suggestion(request, id):
