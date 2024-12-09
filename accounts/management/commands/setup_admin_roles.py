@@ -7,13 +7,8 @@ class Command(BaseCommand):
     help = 'Set up admin roles and permissions'
 
     def handle(self, *args, **kwargs):
-        superusers_group, _ = Group.objects.get_or_create(name="Superusers")
-        moderators_group, _ = Group.objects.get_or_create(name="Moderators")
+        moderators_group, _ = Group.objects.get_or_create(name="Review Moderators")
 
-        all_permissions = Permission.objects.all()
-        superusers_group.permissions.set(all_permissions)  # Assign all permissions
-
-        # Define permissions by their full name
         moderator_permissions_full_name = [
             "Games | review | Can add review",
             "Games | review | Can view review",

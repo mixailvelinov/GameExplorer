@@ -19,14 +19,5 @@ class AccountManager(auth_models.BaseUserManager):
 
         return self.create_user(email, password, **extra_fields)
 
-    # def create_moderator(self, email, password=None, **extra_fields):
-    #     extra_fields.setdefault('is_staff', True)
-    #     extra_fields.setdefault('is_superuser', False)
-    #
-    #     user = self.create_user(email, password, **extra_fields)
-    #
-    #     moderators_group, created = Group.objects.get_or_create(name="Moderators")
-    #     user.groups.add(moderators_group)
-    #
-    #     return user
+
 

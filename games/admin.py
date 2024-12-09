@@ -1,13 +1,8 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
-
-from common.models import Platform
 from games.models import Game, Review
 
-
 # Register your models here.
+
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_genre', 'get_platform', 'release_date',)

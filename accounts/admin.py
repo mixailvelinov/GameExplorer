@@ -1,8 +1,5 @@
 from django.contrib import admin
-
-from accounts.forms import AccountRegisterForm
 from accounts.models import Account, Profile
-
 
 # Register your models here.
 

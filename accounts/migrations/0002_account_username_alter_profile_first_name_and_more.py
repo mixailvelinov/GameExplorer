@@ -14,17 +14,17 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='account',
             name='username',
-            field=models.CharField(default=2, max_length=30, unique=True, validators=[accounts.validators.username_validator]),
+            field=models.CharField(default=2, max_length=30, unique=True, validators=[accounts.validators.UsernameValidator]),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='profile',
             name='first_name',
-            field=models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.name_validator]),
+            field=models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.NameValidator]),
         ),
         migrations.AlterField(
             model_name='profile',
             name='last_name',
-            field=models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.name_validator]),
+            field=models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.NameValidator]),
         ),
     ]

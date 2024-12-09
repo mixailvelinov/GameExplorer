@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <br>
+
 <div class="reviews-container">
     {% if object_list %}
     <h2>Player reviews for {{ game.name }}</h2>
-    {% for review in object_list %}
+        {% for review in object_list %}
         <div class="review-card">
             <div class="review-card-reviewer-details">
                 <div class="reviewer-photo">
@@ -32,6 +32,7 @@
                     {% endif %}
                 </div>
             </div>
+        </div>
     {% endfor %}
     {% else %}
     <h2>No reviews yet...</h2>
@@ -42,7 +43,7 @@
 <div class="pagination">
     {% if is_paginated %}
         {% if page_obj.has_previous %}
-            <a class='page-button'href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            <a class='page-button' href="?page={{ page_obj.previous_page_number }}">Previous</a>
         {% endif %}
 
         {% for num in paginator.page_range %}
@@ -54,9 +55,8 @@
         {% endfor %}
 
         {% if page_obj.has_next %}
-            <a class='page-button'href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class='page-button' href="?page={{ page_obj.next_page_number }}">Next</a>
         {% endif %}
     {% endif %}
-</div>
 </div>
 {% endblock %}

@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='gamesuggestion',
             name='game_suggestion_name',
-            field=models.CharField(max_length=30, validators=[common.validators.game_platform_and_genre_name_validator]),
+            field=models.CharField(max_length=30, validators=[common.validators.GamePlatformGenreNameValidator]),
         ),
     ]

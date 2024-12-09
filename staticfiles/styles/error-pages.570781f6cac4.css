@@ -1,0 +1,31 @@
+
+.dead-end {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 10xp;
+    width: 800px;
+    height: 400px;
+}
+
+.dead-end img {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #3584a8;
+}
+
+.access-denied {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin: 0 auto;
+    width: 800px;
+    height: auto;
+}
+
+.access-denied img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #3584a8;
+}

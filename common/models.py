@@ -3,11 +3,11 @@ from django.db import models
 from django.db.models import ForeignKey
 
 from accounts.models import Account
-from common.validators import game_platform_and_genre_name_validator
+from common.validators import GamePlatformGenreNameValidator
 
 
 class Platform(models.Model):
-    platform_name = models.CharField(max_length=20, validators=[game_platform_and_genre_name_validator])
+    platform_name = models.CharField(max_length=20, validators=[GamePlatformGenreNameValidator()])
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -15,7 +15,7 @@ class Platform(models.Model):
 
 
 class Genre(models.Model):
-    genre_name = models.CharField(max_length=20, validators=[game_platform_and_genre_name_validator])
+    genre_name = models.CharField(max_length=20, validators=[GamePlatformGenreNameValidator()])
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -23,7 +23,7 @@ class Genre(models.Model):
 
 
 class GameSuggestion(models.Model):
-    game_suggestion_name = models.CharField(max_length=30, validators=[game_platform_and_genre_name_validator])
+    game_suggestion_name = models.CharField(max_length=30, validators=[GamePlatformGenreNameValidator()])
     description = models.TextField(max_length=500, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = ForeignKey(Account, on_delete=models.CASCADE)

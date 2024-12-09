@@ -40,8 +40,8 @@ class Migration(migrations.Migration):
             name='Profile',
             fields=[
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
-                ('first_name', models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.name_validator])),
-                ('last_name', models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.name_validator])),
+                ('first_name', models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.NameValidator])),
+                ('last_name', models.CharField(blank=True, max_length=30, null=True, validators=[accounts.validators.NameValidator])),
                 ('date_of_birth', models.DateField(blank=True, null=True)),
                 ('profile_picture', models.URLField(blank=True, null=True)),
                 ('description', models.TextField(blank=True, null=True)),

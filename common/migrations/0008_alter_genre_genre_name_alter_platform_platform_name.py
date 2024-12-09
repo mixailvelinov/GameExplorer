@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='genre',
             name='genre_name',
-            field=models.CharField(max_length=20, validators=[common.validators.game_platform_and_genre_name_validator]),
+            field=models.CharField(max_length=20, validators=[common.validators.GamePlatformGenreNameValidator]),
         ),
         migrations.AlterField(
             model_name='platform',
             name='platform_name',
-            field=models.CharField(max_length=20, validators=[common.validators.game_platform_and_genre_name_validator]),
+            field=models.CharField(max_length=20, validators=[common.validators.GamePlatformGenreNameValidator]),
         ),
     ]

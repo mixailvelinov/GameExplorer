@@ -3,16 +3,14 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
 from rest_framework.exceptions import ValidationError
-
 from common.models import Platform, Genre
-from common.validators import game_platform_and_genre_name_validator
-
+from common.validators import GamePlatformGenreNameValidator
 
 # Create your models here.
 
 
 class Game(models.Model):
-    name = models.CharField(max_length=50, validators=[game_platform_and_genre_name_validator], unique=True)
+    name = models.CharField(max_length=50, validators=[GamePlatformGenreNameValidator()], unique=True)
     release_date = models.DateField()
     genre = models.ManyToManyField(Genre)
     platform = models.ManyToManyField(Platform)
@@ -27,11 +25,6 @@ class Game(models.Model):
 
         if not self.slug:
             self.slug = slugify(self.name)
-
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super().save(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         self.full_clean()

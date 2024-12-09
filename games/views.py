@@ -17,7 +17,6 @@ from GameExplorer.permissions import IsModerator, IsAdmin
 from games.serializers import GameSerializer, ReviewSerializer
 
 
-
 class GamesListView(ListView):
     model = Game
     template_name = 'games/games-list.html'

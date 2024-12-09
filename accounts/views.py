@@ -27,11 +27,21 @@ class AccountRegisterView(CreateView):
         login(self.request, self.object)
         return response
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('index')
+        return super().dispatch(*args, **kwargs)
+
 
 class AccountLoginView(LoginView):
     form_class = AccountLoginForm
     template_name = 'accounts/login-page.html'
     success_url = reverse_lazy('index')
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class AccountLogoutView(LogoutView):

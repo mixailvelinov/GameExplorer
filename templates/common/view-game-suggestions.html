@@ -19,9 +19,9 @@
             </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <div class="access-denied"><img src="{% static '/images/empty-page.png' %}" alt=""></div>
-    {% endif %}
+{% elif object_list is None or object_list|length == 0 %}
+    <div class="access-denied"><img src="{% static 'images/empty-page.png' %}" alt=""></div>
+{% endif %}
 </div>
 
 

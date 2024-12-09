@@ -31,8 +31,8 @@
                         <a href="{% url 'suggestion_create' %}">Suggest a Game</a>
                     {% endif %}
                     <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                    {% csrf_token %}
-                    <button class="menu-button">Logout</button>
+                        {% csrf_token %}
+                    <button class="menu-button"><i class="fa fa-sign-out"></i></button>
                     </form>
                 {% else %}
                     <a href="{% url 'login' %}">Login</a>
@@ -49,7 +49,7 @@
 
 
 <footer>
-    <div><p>&copy; 2024 Game Explorer. Developed by Mihail Velinov. All rights reserved.</p></div>
+    <div><p>&copy; 2024 Game Explorer. Developed by Mihail Velinov.</p></div>
     <div class="contacts">
         <a href="mailto:mihail.vasilev.velinov@gmail.com"><i style="font-size:24px" class="fa">&#xf0e0;</i></a>
         <a href="https://www.instagram.com/mixailvelinov/"><i style="font-size:24px" class="fa">&#xf16d;</i></a>

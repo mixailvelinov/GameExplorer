@@ -7,4 +7,8 @@
 @import 'footer.css';
 @import 'account-details.css';
 @import 'account-close.css';
+@import 'platforms-and-genres.css';
+@import 'error-pages.css';
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
