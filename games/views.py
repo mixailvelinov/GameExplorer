@@ -170,6 +170,11 @@ class GameListAllReviews(ListView):
 class ManageGameAPIView(APIView):
     permission_classes = [IsAdmin]
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request, *args, **kwargs):
         game = Game.objects.get(slug=kwargs['slug'])
         if not game:
@@ -206,6 +211,11 @@ class ManageGameAPIView(APIView):
 
 
 class ManageReviewAPIView(RetrieveDestroyAPIView):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
+
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [IsModerator]
@@ -215,6 +225,11 @@ class ManageReviewAPIView(RetrieveDestroyAPIView):
 class ListAllGameReviewsAPIView(ListAPIView):
     serializer_class = ReviewSerializer
     permission_classes = [IsModerator]
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return redirect('index')
+        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         game_slug = self.kwargs.get('slug')

@@ -17,7 +17,9 @@ class AccountManager(auth_models.BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
 
-        return self.create_user(email, password, **extra_fields)
+        username = extra_fields.get('username', email.split('@')[0])
+
+        return self.create_user(email, password, username=username, **extra_fields)
 
 
 

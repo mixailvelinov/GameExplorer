@@ -1,9 +1,8 @@
-from django.contrib.auth import login, logout, get_user_model
+from django.contrib.auth import login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import CreateView, UpdateView, ListView
 from django.urls import reverse_lazy
@@ -14,6 +13,7 @@ from games.models import Review
 
 
 # Create your views here.
+User = get_user_model()
 
 
 class AccountRegisterView(CreateView):
@@ -28,9 +28,9 @@ class AccountRegisterView(CreateView):
         return response
 
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if self.request.user.is_authenticated:
             return redirect('index')
-        return super().dispatch(*args, **kwargs)
+        return super().dispatch(request,*args, **kwargs)
 
 
 class AccountLoginView(LoginView):
@@ -50,7 +50,7 @@ class AccountLogoutView(LogoutView):
 
 @login_required
 def account_details(request, id):
-    account = get_object_or_404(Account, id=id)
+    account = get_object_or_404(User, id=id)
 
     context = {
         'account': account,
@@ -82,7 +82,7 @@ class AccountEditView(LoginRequiredMixin, UpdateView):
 
 
 def account_delete(request, id):
-    account = get_object_or_404(Account, id=id)
+    account = get_object_or_404(User, id=id)
     context = {'account': account}
 
     if account != request.user:
@@ -105,5 +105,5 @@ class AccountReviews(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['account'] = Account.objects.get(id=self.kwargs['id'])
+        context['account'] = User.objects.get(id=self.kwargs['id'])
         return context
