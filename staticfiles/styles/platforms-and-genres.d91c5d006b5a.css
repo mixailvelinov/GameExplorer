@@ -1,0 +1,23 @@
+.platform-container {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 40%;
+    box-shadow: 0 0 7px #4ac1f7;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    background-image: url("/static/backgrounds/create-platform-bg.32275edcfeaf.png");
+    background-position: center;
+    margin-bottom: 30px;
+}
+
+.genre-container {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 40%;
+    box-shadow: 0 0 7px #4ac1f7;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    background-image: url("/static/backgrounds/create-genre-bg.6d251ac4603f.png");
+    background-position: center;
+    margin-bottom: 30px;
+}
