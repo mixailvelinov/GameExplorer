@@ -7,7 +7,7 @@ from common.validators import GamePlatformGenreNameValidator
 
 
 class Platform(models.Model):
-    platform_name = models.CharField(max_length=20, validators=[GamePlatformGenreNameValidator()])
+    platform_name = models.CharField(max_length=20, unique=True, validators=[GamePlatformGenreNameValidator()])
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -15,7 +15,7 @@ class Platform(models.Model):
 
 
 class Genre(models.Model):
-    genre_name = models.CharField(max_length=20, validators=[GamePlatformGenreNameValidator()])
+    genre_name = models.CharField(max_length=20, unique=True, validators=[GamePlatformGenreNameValidator()])
     description = models.TextField(null=True, blank=True)
 
     def __str__(self):
