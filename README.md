@@ -1,4 +1,4 @@
-LIVE DEMO -> DEPLOYED PROJECT -> https://gameexplorer-production-5b9c.up.railway.app/
+Live Demo ->  https://gameexplorer-production-5b9c.up.railway.app/
 
 Game Explorer is a web app that allows users to review games and read other players' reviews. 
 
