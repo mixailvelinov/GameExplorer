@@ -32,9 +32,9 @@ DEBUG = os.getenv('DEBUG', config('DEBUG')) == 'True'
 
 allowed_hosts_str = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS', default=''))
 ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',') if host.strip()]
-if not ALLOWED_HOSTS:
-    ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', []).split(', '))
+
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
 
 INSTALLED_APPS = [
