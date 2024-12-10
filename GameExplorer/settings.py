@@ -31,16 +31,11 @@ DEBUG = os.getenv('DEBUG', config('DEBUG')) == 'True'
 
 
 allowed_hosts_str = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS', default=''))
-
-# Split by commas and remove any extra spaces around hostnames
 ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',') if host.strip()]
-
-# If ALLOWED_HOSTS is empty, fallback to allowing all hosts (for testing purposes, but not recommended for production)
 if not ALLOWED_HOSTS:
     ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', []).split(', '))
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 
-    'accounts.apps.AccountsConfig',
+    'accounts',
     'games',
     'common'
 ]
@@ -93,9 +88,25 @@ WSGI_APPLICATION = 'GameExplorer.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(default=config('DB_URL'))
-}
+DB_URL = config('DB_URL', default=None)
+
+
+if DB_URL:
+    # If DB_URL is present, use it to configure the database settings
+    DATABASES = {
+        'default': dj_database_url.config(default=DB_URL)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT', default='5432'),  # Default port is 5432 for PostgreSQL
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
