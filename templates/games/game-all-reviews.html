@@ -34,10 +34,11 @@
             </div>
         </div>
     {% endfor %}
-    {% else %}
-        <div class="access-denied"><img src="{% static 'images/empty-page.png' %}" alt=""></div>
-    {% endif %}
+
 </div>
+{% else %}
+    <div class="access-denied"><img src="{% static 'images/empty-page.png' %}" alt=""></div>
+{% endif %}
     <br>
     <br>
 <div class="pagination">
