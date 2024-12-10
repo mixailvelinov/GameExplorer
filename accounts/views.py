@@ -44,7 +44,7 @@ class AccountLoginView(LoginView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class AccountLogoutView(LogoutView):
+class AccountLogoutView(LoginRequiredMixin, LogoutView):
     pass
 
 
