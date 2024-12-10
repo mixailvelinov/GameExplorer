@@ -3,6 +3,7 @@ from games.models import Game, Review
 
 # Register your models here.
 
+
 @admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
     list_display = ('name', 'get_genre', 'get_platform', 'release_date',)
@@ -16,24 +17,17 @@ class GameAdmin(admin.ModelAdmin):
         return ', '.join([platform.platform_name for platform in obj.platform.all()])
 
     get_platform.short_description = 'Platform'
-
     search_fields = ('name', 'developer')
-
     ordering = ('-release_date', 'name')
-
     list_filter = ('release_date', 'genre', 'platform')
-
     prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('user', 'game', 'rating', 'created_at')
-
     ordering = ('-created_at',)
-
     list_filter = ('created_at', 'user', 'game', 'rating')
-
     search_fields = ('user', 'game')
 
 

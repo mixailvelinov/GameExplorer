@@ -17,7 +17,6 @@ class AddPlatformForm(forms.ModelForm):
     description = forms.CharField(required=False, widget=forms.Textarea(attrs={'placeholder': "Optional description.."}))
 
 
-
 class AddGenreForm(forms.ModelForm):
     class Meta:
         model = Genre

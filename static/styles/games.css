@@ -199,8 +199,7 @@ ul {
 .game-h1 {
     margin-bottom: 5px;
     margin-top: 12px;
-        box-shadow: 0 0 9px #07151a;
-
+    box-shadow: 0 0 9px #07151a;
 }
 
 .api {
@@ -223,7 +222,6 @@ ul {
     box-shadow: 0 0 9px #2a6b88;
     margin-bottom: 20px;
     font-family: "Exo 2", serif;
-
 }
 
 .suggestion {

@@ -1,5 +1,6 @@
 from django.contrib.auth import models as auth_models
 from django.contrib.auth.models import Group
+from django.core.exceptions import ValidationError
 
 
 class AccountManager(auth_models.BaseUserManager):
@@ -18,6 +19,8 @@ class AccountManager(auth_models.BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         username = extra_fields.get('username', email.split('@')[0])
+        if self.model.objects.filter(username=username).exists():
+            raise ValidationError(f"Username '{username}' is already taken.")
 
         return self.create_user(email, password, username=username, **extra_fields)
 

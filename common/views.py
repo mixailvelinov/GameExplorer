@@ -46,7 +46,7 @@ class GameSuggestionCreate(LoginRequiredMixin, CreateView):
     model = GameSuggestion
     form_class = GameSuggestionForm
     template_name = 'common/game-suggestion-page.html'
-    success_url = reverse_lazy('suggestion_create')
+    success_url = reverse_lazy('suggestion-create')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
