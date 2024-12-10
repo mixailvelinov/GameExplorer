@@ -30,7 +30,14 @@ SECRET_KEY = os.getenv('SECRET_KEY', config('SECRET_KEY'))
 DEBUG = os.getenv('DEBUG', config('DEBUG')) == 'True'
 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS').split(', '))
+allowed_hosts_str = os.getenv('ALLOWED_HOSTS', config('ALLOWED_HOSTS', default=''))
+
+# Split by commas and remove any extra spaces around hostnames
+ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',') if host.strip()]
+
+# If ALLOWED_HOSTS is empty, fallback to allowing all hosts (for testing purposes, but not recommended for production)
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', config('CSRF_TRUSTED_ORIGINS', []).split(', '))
 
 # Application definition
