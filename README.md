@@ -3,7 +3,14 @@
 **The application is live at [GameExplorer Production](https://gameexplorer-production-5b9c.up.railway.app/)**
 
 
-GameExplorer is a web app that allows users to rate and review games. The platform supports role-based access, enabling Admins and Review Moderators to perform specific actions. Users can explore games, add reviews, and interact with the content added by admins.
+GameExplorer is a web app that allows users to rate and review games. The platform supports role-based access, enabling Admins and Review Moderators to perform specific actions. 
+
+## Test Users
+You can use the following credentials to test different user types:
+- admin: email **admin@admin.com** pass **admin**
+- review moderator: email **misho98@abv.bg** pass **badlands**
+
+You can also create a new user and assign them as Review Moderator through the admin (after logging in as an admin first).
 
 ## 1. Features
 ### Game Reviews and Ratings:
