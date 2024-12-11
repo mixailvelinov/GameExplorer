@@ -12,7 +12,7 @@ You can use the following credentials to test different user types:
 
 You can also create a new user and assign them as Review Moderator and is_staff through the admin (after logging in as an admin first).
 
-## 1. Features
+## Features
 ### Game Reviews and Ratings:
 - Users can rate and review games by selecting the game and clicking on the **Mark as Played** button.
 - Reviews are visible on the game pages. All reviews for a specific user can be checked by clicking on their profile and then **Reviews**.
@@ -20,14 +20,15 @@ You can also create a new user and assign them as Review Moderator and is_staff 
 - A welcome email is sent to the user when registering.
 - Can access public views only.
 ### Admin Features:
-- Full CRUD (Create, Read, Update, Delete) permissions for managing games, platforms, genres, and reviews.
-- Review moderation via the web app or Admin/API interface.
+- **Full CRUD** (Create, Read, Update, Delete) permissions for managing games, platforms, genres, and reviews.
+- Review moderation via the web app or **Admin/API** interface.
 - In the web app, they have a nav bar with more options. They can add **games**, **platforms** and **genres**.
 - The game suggestions list can be viewed by clicking on **Add games** and then selecting **Check user suggestions** located below the form. When a suggestion is fulfilled, it can be deleted by clicking on the **bin icon** next to the suggestion.
 - They can delete reviews by tapping on the **Delete** button below the review in quesiton.
 ### Review Moderators:
-- Limited CRUD permissions - they can delete ofensive reviews, while the admins focus more on the game content.
-- Ability to delete reviews directly through the app, via the Admin panel or API - a **Delete** button will show below every review.
+- **Limited CRUD permissions** - they can delete ofensive reviews, while the admins focus more on the game content.
+- Delete reviews directly through the admin, API or directly through the web app - a **Delete** button will show below every review.
+- Editing reviews is avaialble only for the user who has written it. 
 
 
 ## Setup Instructions
