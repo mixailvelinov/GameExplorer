@@ -23,7 +23,7 @@ GameExplorer is a web app that allows users to rate and review games. The platfo
 ## Setup Instructions
 Follow these steps to run the project locally:
 
-## 1. Download the Project
+### 1. Download the Project
 Clone or download the project files to your local machine.
 
 ### 2. Create the .env File
