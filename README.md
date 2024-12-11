@@ -8,9 +8,9 @@ GameExplorer is a web app that allows users to rate and review games. The platfo
 ## Test Users
 You can use the following credentials to test different user types:
 - admin: email **admin@admin.com** pass **admin**
-- review moderator: email **misho98@abv.bg** pass **badlands**
+- review moderator: email **mod@mod.com** pass **moderator12**
 
-You can also create a new user and assign them as Review Moderator through the admin (after logging in as an admin first).
+You can also create a new user and assign them as Review Moderator and is_staff through the admin (after logging in as an admin first).
 
 ## 1. Features
 ### Game Reviews and Ratings:
