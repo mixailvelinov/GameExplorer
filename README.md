@@ -14,21 +14,24 @@ You can also create a new user and assign them as Review Moderator and is_staff 
 
 ## 1. Features
 ### Game Reviews and Ratings:
-- Users can rate and review games.
-- Reviews are visible on the game pages.
-- Users can send suggestions to admins if they don't see a specific games in the library.
+- Users can rate and review games by selecting the game and clicking on the **Mark as Played** button.
+- Reviews are visible on the game pages. All reviews for a specific user can be checked by clicking on their profile and then **Reviews**.
+- Users can send **suggestions** to admins if they don't see a specific games in the library.
 - A welcome email is sent to the user when registering.
 - Can access public views only.
 ### Admin Features:
 - Full CRUD (Create, Read, Update, Delete) permissions for managing games, platforms, genres, and reviews.
 - Review moderation via the web app or Admin/API interface.
+- In the web app, they have a nav bar with more options. They can add **games**, **platforms** and **genres**.
+- The game suggestions list can be viewed by clicking on **Add games** and then selecting **Check user suggestions** located below the form. When a suggestion is fulfilled, it can be deleted by clicking on the **bin icon** next to the suggestion.
+- They can delete reviews by tapping on the **Delete** button below the review in quesiton.
 ### Review Moderators:
 - Limited CRUD permissions - they can delete ofensive reviews, while the admins focus more on the game content.
-- Ability to delete reviews directly through the app, via the Admin panel or API.
+- Ability to delete reviews directly through the app, via the Admin panel or API - a **Delete** button will show below every review.
 
 
 ## Setup Instructions
-Follow these steps to run the project locally:
+Follow these steps is you wish to run the project locally:
 
 ### 1. Download the Project
 Clone or download the project files to your local machine.
