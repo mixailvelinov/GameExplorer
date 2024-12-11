@@ -3,28 +3,28 @@
 
 {% block content %}
 
-<div class="search-field">
-    <form method="GET">
-        <input type="text" name="search_form" placeholder="Search games..." value="{{ request.GET.q }}">
-
-        <button type="submit">Search</button>
-    </form>
-</div>
-
-<div class="all-games">
-    {% if object_list %}
-    <ul>
-        {% if object_list %}
-        {% for game in object_list %}
-            <li><a href="{% url 'games-detail' slug=game.slug %}">{{ game.name }}</a></li>
-        {% endfor %}
-        {% else %}
-        <p>No games</p>
-        {% endif %}
-    </ul>
-</div>
-{% else %}
+{% if not object_list %}
     <div class="access-denied"><img src="{% static 'images/empty-page.png' %}" alt=""></div>
+{% else %}
+    <div class="search-field">
+        <form method="GET">
+            <input type="text" name="search_form" placeholder="Search games..." value="{{ request.GET.q }}">
+
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="all-games">
+        <ul>
+            {% if object_list %}
+            {% for game in object_list %}
+                <li><a href="{% url 'games-detail' slug=game.slug %}">{{ game.name }}</a></li>
+            {% endfor %}
+            {% else %}
+            <p>No games</p>
+            {% endif %}
+        </ul>
+    </div>
 {% endif %}
 
 
@@ -47,7 +47,5 @@
         {% endif %}
     {% endif %}
 </div>
-
-
 
 {% endblock %}
