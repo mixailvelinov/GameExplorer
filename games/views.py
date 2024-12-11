@@ -171,12 +171,13 @@ class ManageGameAPIView(APIView):
     permission_classes = [IsAdmin]
 
     def get(self, request, *args, **kwargs):
-        game = Game.objects.get(slug=kwargs['slug'])
-        if not game:
-            return Response({"This game hasn't been added yet."}, status=status.HTTP_404_NOT_FOUND)
-        else:
-            serializer = GameSerializer(game)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        try:
+            game = Game.objects.get(slug=kwargs['slug'])
+        except Game.DoesNotExist:
+            return Response({"detail": "This game hasn't been added yet."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = GameSerializer(game)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         serializer = GameSerializer(data=request.data)
@@ -186,8 +187,9 @@ class ManageGameAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
-        game = Game.objects.get(slug=kwargs['slug'])
-        if not game:
+        try:
+            game = Game.objects.get(slug=kwargs['slug'])
+        except Game.DoesNotExist:
             return Response({'detail': 'Game not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = GameSerializer(game, data=request.data, partial=True)
@@ -197,8 +199,9 @@ class ManageGameAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
-        game = Game.objects.get(slug=kwargs['slug'])
-        if not game:
+        try:
+            game = Game.objects.get(slug=kwargs['slug'])
+        except Game.DoesNotExist:
             return Response({"detail": "Game not found."}, status=status.HTTP_404_NOT_FOUND)
 
         game.delete()

@@ -2,43 +2,42 @@
 {% load static %}
 {% block content %}
 
-<div class="reviews-container">
-    {% if object_list %}
-    <h2>Player reviews for {{ game.name }}</h2>
-        {% for review in object_list %}
-        <div class="review-card">
-            <div class="review-card-reviewer-details">
-                <div class="reviewer-photo">
-                    {% if review.user.profile.profile_picture %}
-                        <a href="{% url 'account-details' review.user.id %}"><img src="{{ review.user.profile.profile_picture }}" alt=""></a>
-                    {% else %}
-                        <a href="{% url 'account-details' review.user.id %}"><img src="{% static 'user/no-photo-user.png' %}" alt=""></a>
-                    {% endif %}
-
-                </div>
-               <p> {{ review.user.username }}</p>
-            </div>
-            <div class="review-card-review-details">
-                <p>Player rating: {{ review.rating }} / 5</p>
-                <p>{% if review.review %}{{ review.review }} {% else %} Comment not provided. {% endif %}</p>
-                <h4>{{ review.created_at|date:"j F, Y" }}</h4>
-
-                <div class="review-buttons">
-                    {% if review.user == request.user %}
-                        <a href="{% url 'edit-review' slug=game.slug id=review.id %}"><button>Edit</button></a>
-                    {% endif %}
-                    {% if review.user == request.user or request.user.is_staff %}
-                        <a href="{% url 'delete-review' slug=game.slug id=review.id %}"><button>Delete</button></a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-</div>
-{% else %}
+{% if not object_list %}
     <div class="access-denied"><img src="{% static 'images/empty-page.png' %}" alt=""></div>
+{% else %}
+    <div class="reviews-container">
+        <h2>Player reviews for {{ game.name }}</h2>
+            {% for review in object_list %}
+            <div class="review-card">
+                <div class="review-card-reviewer-details">
+                    <div class="reviewer-photo">
+                        {% if review.user.profile.profile_picture %}
+                            <a href="{% url 'account-details' review.user.id %}"><img src="{{ review.user.profile.profile_picture }}" alt=""></a>
+                        {% else %}
+                            <a href="{% url 'account-details' review.user.id %}"><img src="{% static 'user/no-photo-user.png' %}" alt=""></a>
+                        {% endif %}
+
+                    </div>
+                   <p> {{ review.user.username }}</p>
+                </div>
+                <div class="review-card-review-details">
+                    <p>Player rating: {{ review.rating }} / 5</p>
+                    <p>{% if review.review %}{{ review.review }} {% else %} Comment not provided. {% endif %}</p>
+                    <h4>{{ review.created_at|date:"j F, Y" }}</h4>
+
+                    <div class="review-buttons">
+                        {% if review.user == request.user %}
+                            <a href="{% url 'edit-review' slug=game.slug id=review.id %}"><button>Edit</button></a>
+                        {% endif %}
+                        {% if review.user == request.user or request.user.is_staff %}
+                            <a href="{% url 'delete-review' slug=game.slug id=review.id %}"><button>Delete</button></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
 {% endif %}
+</div>
     <br>
     <br>
 <div class="pagination">
@@ -60,4 +59,6 @@
         {% endif %}
     {% endif %}
 </div>
+
+
 {% endblock %}
