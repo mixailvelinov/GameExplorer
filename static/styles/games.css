@@ -196,6 +196,10 @@ ul {
     padding-bottom: 20px;
 }
 
+.mark-as-played-btn button:hover {
+    background-color: #006b1b;
+}
+
 .game-h1 {
     margin-bottom: 5px;
     margin-top: 12px;
