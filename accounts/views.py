@@ -44,8 +44,12 @@ class AccountLoginView(LoginView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class AccountLogoutView(LoginRequiredMixin, LogoutView):
-    pass
+class AccountLogoutView(LogoutView):
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
+
 
 
 @login_required
