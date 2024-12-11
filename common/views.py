@@ -28,7 +28,7 @@ def index(request):
 
     top_game = Game.objects.annotate(
         average_rating=Avg('review__rating')
-    ).filter(average_rating__isnull=False).order_by('-average_rating').first()
+        ).filter(average_rating__isnull=False).order_by('-average_rating').first()
 
     games = Game.objects.all()
 
@@ -39,6 +39,7 @@ def index(request):
         'top_game': top_game,
         'games': games,
     }
+
     return render(request, 'common/index.html', context)
 
 
@@ -54,6 +55,7 @@ class GameSuggestionCreate(LoginRequiredMixin, CreateView):
         self.object.save()
 
         messages.success(self.request, "Thank you! Your suggestion has been submitted and is under review.")
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -72,11 +74,13 @@ class CreatePlatform(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         messages.success(self.request, "Platform added and can be assigned to games.")
+
         return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('index')
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -89,11 +93,13 @@ class CreateGenre(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save()
         messages.success(self.request, "Genre added and can be assigned to games.")
+
         return super().form_valid(form)
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('index')
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -105,6 +111,7 @@ class GameSuggestionsList(LoginRequiredMixin, ListView):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('index')
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -119,4 +126,5 @@ def delete_game_suggestion(request, id):
         return redirect('game-suggestions-list')
 
     context = {'game': game}
+
     return render(request, 'common/view-game-suggestions.html', context)

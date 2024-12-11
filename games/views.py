@@ -33,8 +33,10 @@ class AllGamesView(ListView):
     def get_queryset(self):
         queryset = Game.objects.all()
         query = self.request.GET.get('search_form')
+
         if query:
             queryset = queryset.filter(name__icontains=query)
+
         return queryset
 
 
@@ -44,8 +46,10 @@ class GameDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         game = get_object_or_404(Game, slug=self.kwargs['slug'])
+
         context = super().get_context_data(**kwargs)
         context['total_rating'] = game.review_set.all().aggregate(Avg('rating'))['rating__avg']
+
         return context
 
 
@@ -59,10 +63,12 @@ class GameReview(LoginRequiredMixin, CreateView):
 
         if Review.objects.filter(game=game, user=self.request.user).exists():
             messages.error(self.request, 'You have already reviewed this game!')
+
             return self.form_invalid(form)
 
         form.instance.game = game
         form.instance.user = self.request.user
+
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -71,6 +77,7 @@ class GameReview(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
+
         return context
 
 
@@ -85,8 +92,10 @@ class EditGameReview(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         review = Review.objects.get(id=self.kwargs['id'])
+
         if review.user != self.request.user:
             raise PermissionDenied("You do not have permission to edit this review.")
+
         return review
 
 
@@ -98,14 +107,17 @@ class DeleteGameReview(LoginRequiredMixin, DeleteView):
 
     def get_object(self, queryset=None):
         review = get_object_or_404(Review, id=self.kwargs['id'])
+
         if not self.request.user.is_staff:
             if review.user != self.request.user:
                 raise PermissionDenied("You do not have permission to delete this review.")
+
         return review
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
+
         return context
 
 
@@ -120,6 +132,7 @@ class AddGame(CreateView):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('index')
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -134,6 +147,7 @@ class EditGame(UpdateView):
     def dispatch(self, request, *args, **kwargs):
         if not self.request.user.is_superuser:
             return redirect('index')
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -149,6 +163,7 @@ def delete_game(request, slug):
         return redirect('games-list')
 
     context = {'game': game, 'form': form}
+
     return render(request, 'games/delete-game.html', context)
 
 
@@ -164,6 +179,7 @@ class GameListAllReviews(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['game'] = Game.objects.get(slug=self.kwargs['slug'])
+
         return context
 
 
@@ -177,13 +193,16 @@ class ManageGameAPIView(APIView):
             return Response({"detail": "This game hasn't been added yet."}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = GameSerializer(game)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request, *args, **kwargs):
         serializer = GameSerializer(data=request.data)
+
         if serializer.is_valid():
             game_instance = serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, *args, **kwargs):
@@ -193,9 +212,11 @@ class ManageGameAPIView(APIView):
             return Response({'detail': 'Game not found.'}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = GameSerializer(game, data=request.data, partial=True)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
@@ -205,6 +226,7 @@ class ManageGameAPIView(APIView):
             return Response({"detail": "Game not found."}, status=status.HTTP_404_NOT_FOUND)
 
         game.delete()
+
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
