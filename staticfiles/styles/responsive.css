@@ -13,7 +13,7 @@
 
     }
 
-    .access-denied {
+    .access-denied, .dead-end {
         width: 400px;
     }
 
@@ -96,17 +96,24 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        margin: 0;
     }
 
-    .user-details h1, .user-details h2 {
+    .user-details h2 {
         text-align: center;
         margin: 0;
         padding-bottom: 20px;
         font-size: 15px;
+        border: none;
+    }
+
+    .user-details h1 {
+        display: none;
     }
 
     .user-visualization {
         margin-bottom: 20px;
+        width: 50%;
     }
 
     .user-details {
@@ -116,18 +123,22 @@
 
     .user-buttons {
         align-items: center;
+        justify-content: center;
+        margin: 0 auto;
     }
 
     .user-card {
         width: 100%;
         text-align: center;
+        margin: 0;
+        padding: 0;
     }
 
 }
 
 
-
 @media (max-width: 805px) {
+
     body {
         margin: 0 auto;
     }
@@ -170,13 +181,25 @@
     }
 
     .user-buttons {
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .user-buttons a, .user-buttons button {
-        width: 50px;
+        width: 120px;
+        height: auto;
         font-size: 8px;
         padding: 0;
+        margin: 0;
     }
+
+@media (max-width: 780px) {
+    .account-close-page h1, .account-close-page h2 {
+        font-size: 15px;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        margin: 10px;
+    }
+}
 
 }
