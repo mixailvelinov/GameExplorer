@@ -1,0 +1,182 @@
+@media (max-width: 1200px) {
+    nav a {
+        margin: 5px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 960px) {
+    .game-card-index {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .access-denied {
+        width: 400px;
+    }
+
+    .entry-badge {
+    width: 170px;
+    height: auto;
+    position: absolute;
+    top: -50px;
+    left: -70px;
+    }
+
+    .games-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        width: 100%;
+    }
+
+    .game-h1 {
+        font-size: 25px;
+    }
+
+    .game-details-card {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .game-details h2 {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .game-description-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .game-admin-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .game-card p {
+        text-align: center;
+    }
+
+    .p-description {
+        margin: 0 auto;
+    }
+
+    .reviews-container, .review-card-review-details {
+        width: 100%;
+        padding: 0;
+    }
+
+    .reviews-container h2 {
+        font-size: 20px;
+    }
+
+    .review-card {
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    .review-card-review-details h4 {
+        margin-right: 25px;
+        font-size: 10px;
+    }
+
+    .review-card-review-details p {
+        font-size: 10px;
+    }
+
+    .user-details-block, .user-card {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-details h1, .user-details h2 {
+        text-align: center;
+        margin: 0;
+        padding-bottom: 20px;
+        font-size: 15px;
+    }
+
+    .user-visualization {
+        margin-bottom: 20px;
+    }
+
+    .user-details {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-buttons {
+        align-items: center;
+    }
+
+    .user-card {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+
+
+@media (max-width: 805px) {
+    body {
+        margin: 0 auto;
+    }
+
+    .access-denied {
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    footer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .game-add-container, .genre-container, .platform-container, .game-review-container, .form-container, .form-div {
+        width: 100%;
+    }
+
+
+
+    .game-list-h2 {
+        font-size: 30px;
+        margin: 0;
+    }
+
+    .all-games {
+        width: 100%;
+    }
+
+    .all-games ul {
+        padding: 0;
+    }
+
+    .user-buttons {
+        flex-direction: row;
+    }
+
+    .user-buttons a, .user-buttons button {
+        width: 50px;
+        font-size: 8px;
+        padding: 0;
+    }
+
+}
