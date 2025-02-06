@@ -7,9 +7,9 @@ body {
 }
 
 header {
-    margin: 0 auto;
-    width: 70%;
     display: flex;
+    width: 70%;
+    margin: 0 auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;

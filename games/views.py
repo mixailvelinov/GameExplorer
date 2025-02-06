@@ -132,8 +132,8 @@ class AddGame(CreateView):
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect('index')
-
         return super().dispatch(request, *args, **kwargs)
+
 
 
 class EditGame(UpdateView):
