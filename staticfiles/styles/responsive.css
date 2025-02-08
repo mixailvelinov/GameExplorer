@@ -134,9 +134,11 @@
         padding: 0;
     }
 
+    .game-details {
+        margin: 0;
+    }
+
 }
-
-
 @media (max-width: 805px) {
 
     body {
@@ -202,4 +204,11 @@
     }
 }
 
+
+}
+
+@media (max-width: 650px){
+    iframe {
+        width: 330px;
+    }
 }

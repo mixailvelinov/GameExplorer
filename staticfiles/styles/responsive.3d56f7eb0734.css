@@ -166,7 +166,6 @@
     }
 
 
-
     .game-list-h2 {
         font-size: 30px;
         margin: 0;
@@ -191,6 +190,8 @@
         padding: 0;
         margin: 0;
     }
+}
+
 
 @media (max-width: 780px) {
     .account-close-page h1, .account-close-page h2 {
@@ -202,4 +203,3 @@
     }
 }
 
-}

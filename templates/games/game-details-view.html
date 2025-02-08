@@ -21,11 +21,19 @@
             <h2>RATING: {% if total_rating %}{{ total_rating|floatformat:"2" }}/5{% else %}No reviews yet{% endif %}</h2>
             <h2><a class='h2-button-reviews' href="{% url 'game-all-reviews' slug=game.slug %}">REVIEWS</a> </h2> {#continue once the backend logic is completed#}
 
+
         </div>
 
 
     </section>
+
+
+
 </div>
+
+                {% if game.trailer_url %}
+                    <iframe  controls src="{{ game.trailer_url }}"></iframe>
+            {% endif %}
     <div class="game-description-container">
         <p>{{ game.description }}</p>
     </div>

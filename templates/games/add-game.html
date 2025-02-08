@@ -77,6 +77,13 @@
                 {% endfor %}
             {% endif %}
 
+            {{ form.trailer_url }}
+            {% if form.trailer_url.errors %}
+                {%  for error in form.trailer_url.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endif %}
+
             <button>Save</button>
         </form>
     </div>

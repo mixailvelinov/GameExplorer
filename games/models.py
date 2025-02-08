@@ -17,6 +17,7 @@ class Game(models.Model):
     developer = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
     game_cover = models.URLField()
+    trailer_url = models.URLField(null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True)
 
     def clean(self):
